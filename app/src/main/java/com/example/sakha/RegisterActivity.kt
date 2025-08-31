@@ -1,5 +1,6 @@
 package com.example.sakha
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -23,5 +24,9 @@ class RegisterActivity : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.login_btn)
 
         errorMsg.isVisible = false
+        loginBtn.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 }
