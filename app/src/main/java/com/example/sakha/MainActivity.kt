@@ -1,6 +1,5 @@
 package com.example.sakha
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ArrayAdapter
@@ -10,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputLayout
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var stateDistricts: JSONObject
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,23 +23,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        startActivity(Intent(this, RegisterActivity::class.java))
-//        finish()
 
-        val states = listOf(
-            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
-            "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan",
-            "Sikkim", "Tamil Nadu", "Tripura", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
-            //Union Territories
-            "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
-            "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
-        )
+        // Load JSON from assets
+        val jsonString = assets.open("state_districts.json").bufferedReader().use { it.readText() }
+        stateDistricts = JSONObject(jsonString)
 
-        val districtsMap = mapOf(
-            "Andhra Pradesh" to listOf("Alluri Sitharama Raju", "Anakapalli", "Bapatla", "Dr. B. R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur",
-                "Kakinada", "Krishna", "NTR", "Palnadu", "Parvathipuram Manyam", "Prakasam", "Srikakulam", "Sri Potti Sriramulu Nellore", "Visakhapatnam",
-                "Vizianagaram", "West Godavari", "Annamayya", "Anantapur", "Chittoor", "Kadapa (YSR)", "Kurnool", "Nandyal", "Sri Sathya Sai", "Tirupati")
-        )
+        // Get all states (keys of the JSON)
+        val stateList = stateDistricts.keys().asSequence().toList().sorted()
 
         val txtFieldState = findViewById<TextInputLayout>(R.id.state_dropdown_layout)
         val dropdownState = findViewById<AutoCompleteTextView>(R.id.stateDropdown)
@@ -57,22 +49,33 @@ class MainActivity : AppCompatActivity() {
         txtFieldVillage.isHintEnabled = true
         dropdownVillage.hint = ""
 
-        val stateAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, states.sorted())
+        // State dropdown
+        val stateAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, stateList)
         dropdownState.setAdapter(stateAdapter)
         dropdownState.setDropDownBackgroundResource(R.color.dropdown_bg)
         dropdownState.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
         dropdownState.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
-
         dropdownState.threshold = 1
 
-        dropdownState.setOnItemClickListener { _, _, position, _ ->
-            val selectedState = stateAdapter.getItem(position)
+        // On state selection → load districts
+        dropdownState.setOnItemClickListener { parent, _, position, _ ->
+            // Use the adapter's filtered item, not stateList[position]
+            val selectedState = (parent.getItemAtPosition(position) as String).trim()
 
-            val districts = districtsMap[selectedState] ?: emptyList()
+            if (stateDistricts.has(selectedState)) {
+                val districtsJson = stateDistricts.getJSONArray(selectedState)
+                val districtList = MutableList(districtsJson.length()) { i ->
+                    districtsJson.getString(i)
+                }
 
-            val districtAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, districts)
-            dropdownDistrict.setAdapter(districtAdapter)
-            dropdownDistrict.setText("", false) // clear old selection
+                val districtAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, districtList)
+                dropdownDistrict.setAdapter(districtAdapter)
+                dropdownDistrict.setDropDownBackgroundResource(R.color.dropdown_bg)
+                dropdownDistrict.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
+                dropdownDistrict.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
+                dropdownDistrict.setText("", false)   // clear previous selection
+                dropdownDistrict.threshold = 1        // enable filtering on first char
+            }
         }
     }
 }
