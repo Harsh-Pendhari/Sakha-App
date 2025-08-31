@@ -33,4 +33,27 @@
         <item name="android:layout_width">@dimen/No_Bg_ImageWidth</item>
         <item name="android:layout_height">@dimen/No_Bg_ImageHeight</item>
     </style>
+
+    <style name="dropdown_presets" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:layout_height">@dimen/dropdown_height</item>
+        <item name="android:padding">@dimen/dropdown_padding</item>
+        <item name="android:textSize">@dimen/dropdown_textSize</item>
+        <item name="android:layout_marginTop">@dimen/dropdown_marginTop</item>
+        <item name="android:layout_marginBottom">@dimen/dropdown_marginBottom</item>
+        <item name="android:layout_marginStart">@dimen/dropdown_marginStart</item>
+        <item name="android:layout_marginEnd">@dimen/dropdown_marginEnd</item>
+        <item name="android:elevation">@dimen/dropdown_elevation</item>
+        <item name="android:background">@color/text_view_background</item>
+    </style>
+
+    <style name="DropdownTheme" parent="ThemeOverlay.MaterialComponents.AutoCompleteTextView">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:popupBackground">@color/text_view_background</item>
+    </style>
+
+    <style name="CustomAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textColor">@color/red</item> <!-- list text color -->
+        <item name="android:popupBackground">@color/text_view_background</item> <!-- dropdown background -->
+    </style>
+
 </resources>

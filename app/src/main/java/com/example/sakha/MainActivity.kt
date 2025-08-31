@@ -2,6 +2,8 @@ package com.example.sakha
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,7 +19,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        startActivity(Intent(this, RegisterActivity::class.java))
-        finish()
+//        startActivity(Intent(this, RegisterActivity::class.java))
+//        finish()
+        val states = listOf(
+            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+            "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+            "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+            "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+            "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+            "Uttar Pradesh", "Uttarakhand", "West Bengal"
+        )
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, states.sorted())
+        val dropdown = findViewById<AutoCompleteTextView>(R.id.stateDropdown)
+        dropdown.setAdapter(adapter)
+        dropdown.threshold = 1
     }
 }

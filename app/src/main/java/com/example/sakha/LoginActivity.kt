@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import android.content.Intent
+import android.widget.EditText
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
         val forgotPassword = findViewById<Button>(R.id.forgotPassword)
         val errorMsg = findViewById<TextView>(R.id.error_msg)
         val registerBtn = findViewById<Button>(R.id.new_registration)
+        val emailInput = findViewById<EditText>(R.id.userid)
 
         forgotPassword.isVisible = false
         errorMsg.isVisible = false
@@ -26,5 +28,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()
         }
+
+
     }
 }

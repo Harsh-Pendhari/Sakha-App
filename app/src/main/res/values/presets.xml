@@ -21,4 +21,13 @@
 <!--    NO-BACKGROUND LOGO PRESETS-->
     <dimen name="No_Bg_ImageWidth">120dp</dimen>
     <dimen name="No_Bg_ImageHeight">120dp</dimen>
+<!-- DROPDOWN PRESETS -->
+    <dimen name="dropdown_height">50dp</dimen>
+    <dimen name="dropdown_textSize">16sp</dimen>
+    <dimen name="dropdown_padding">10dp</dimen>
+    <dimen name="dropdown_marginTop">10dp</dimen>
+    <dimen name="dropdown_marginBottom">10dp</dimen>
+    <dimen name="dropdown_marginStart">20dp</dimen>
+    <dimen name="dropdown_marginEnd">20dp</dimen>
+    <dimen name="dropdown_elevation">5dp</dimen>
 </resources>
