@@ -14,5 +14,7 @@
     <string name="register_btn">Register</string>
     <string name="error_message">Error message will appear here</string>
     <string name="already_account">Already have an account? Click Here to Login</string>
-    <string name="select_state_hint">Select State</string>
+    <string name="select_state_hint">State</string>
+    <string name="select_District_hint">District</string>
+    <string name="select_Village_hint">Village</string>
 </resources>

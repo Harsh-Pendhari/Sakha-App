@@ -15,4 +15,7 @@
     <color name="blue">#0003FF</color>
     <color name="red">#ff0000</color>
 
+    <color name="dropdown_bg">#C2F6D3</color>
+
+
 </resources>

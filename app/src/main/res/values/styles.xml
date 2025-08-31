@@ -35,7 +35,7 @@
     </style>
 
     <style name="CustomHintText" parent="@style/TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">14sp</item> <!-- change size -->
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/text_view_textColorHint</item>
     </style>
 
