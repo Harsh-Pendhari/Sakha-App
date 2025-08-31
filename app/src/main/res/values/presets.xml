@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    TEXTVIEW PRESETS-->
+    <dimen name="text_view_padding">10dp</dimen>
+    <dimen name="text_view_height">50dp</dimen>
+    <dimen name="text_view_textSize">16sp</dimen>
+    <dimen name="text_view_bottom_margin">10dp</dimen>
+    <dimen name="text_view_top_margin">10dp</dimen>
+    <dimen name="text_view_drawablePadding">12dp</dimen>
+    <dimen name="text_view_layout_marginStart">20dp</dimen>
+    <dimen name="text_view_layout_marginEnd">20dp</dimen>
+    <dimen name="text_view_elevation">5dp</dimen>
+<!--    BUTTON PRESETS-->
+    <dimen name="button_height">55dp</dimen>
+    <dimen name="button_textSize">18sp</dimen>
+    <dimen name="button_padding">6dp</dimen>
+    <dimen name="button_elevation">5dp</dimen>
+    <dimen name="button_topMargin">10dp</dimen>
+    <dimen name="button_margin">40dp</dimen>
+    <dimen name="button_roundness">50dp</dimen>
+<!--    NO-BACKGROUND LOGO PRESETS-->
+    <dimen name="No_Bg_ImageWidth">120dp</dimen>
+    <dimen name="No_Bg_ImageHeight">120dp</dimen>
+</resources>

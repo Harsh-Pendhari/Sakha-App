@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Sakha</string>
+    <string name="email_userId_hint">Enter Email or Phone</string>
+    <string name="password">Enter Password</string>
+    <string name="forget_pwd">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="register">New Registration</string>
+    <string name="logo_description">App Logo</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="email_hint">Email Address</string>
+    <string name="phone_num_hint">Phone Number</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_pwd_hint">Confirm Password</string>
+    <string name="register_btn">Register</string>
+    <string name="already_account">Already have an account? Click Here to Login</string>
+</resources>

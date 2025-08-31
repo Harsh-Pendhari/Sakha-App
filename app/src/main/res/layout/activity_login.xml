@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:gravity="center"
+    android:id="@+id/login">
+
+    <EditText
+        android:id="@+id/userid"
+        android:layout_width="match_parent"
+        android:ems="10"
+        style="@style/edit_text_presets"
+        android:hint="@string/email_userId_hint"
+        android:autofillHints="Email"
+        android:drawableStart="@drawable/person_ic"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/user_pwd"
+        style="@style/edit_text_presets"
+        android:layout_width="match_parent"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:autofillHints="Password"
+        android:layout_marginBottom="20dp"
+        android:drawableStart="@drawable/lock_ic"/>
+
+    <Button
+        android:layout_width="196dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#FF0000"
+        android:text="@string/forget_pwd"
+        android:textSize="18sp"
+        android:background="@color/transparentBg"
+        android:id="@+id/forgotPassword"/>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:text="@string/login"
+        style="@style/button_view_presets" />
+
+    <Button
+        android:id="@+id/new_registration"
+        android:layout_width="match_parent"
+        android:text="@string/register"
+        style="@style/button_view_presets"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:contentDescription="@string/logo_description"
+        app:srcCompat="@drawable/no_bg_sakha_logo"
+        style="@style/No_bg_logo_presets"
+        android:layout_marginTop="50dp"/>
+
+</LinearLayout>

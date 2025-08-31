@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="edit_text_presets" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_height">@dimen/text_view_height</item>
+        <item name="android:padding">@dimen/text_view_padding</item>
+        <item name="android:textSize">@dimen/text_view_textSize</item>
+        <item name="android:layout_marginBottom">@dimen/text_view_bottom_margin</item>
+        <item name="android:layout_marginTop">@dimen/text_view_top_margin</item>
+        <item name="android:drawablePadding">@dimen/text_view_drawablePadding</item>
+        <item name="android:background">@color/text_view_background</item>
+        <item name="android:layout_marginStart">@dimen/text_view_layout_marginStart</item>
+        <item name="android:layout_marginEnd">@dimen/text_view_layout_marginEnd</item>
+        <item name="android:elevation">@dimen/text_view_elevation</item>
+        <item name="android:textColorHint">@color/text_view_textColorHint</item>
+        <item name="android:textColor">@color/text_view_textColor</item>
+    </style>
+
+    <style name="button_view_presets" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:textSize">@dimen/button_textSize</item>
+        <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:elevation">@dimen/button_elevation</item>
+        <item name="android:layout_marginTop">@dimen/button_topMargin</item>
+        <item name="android:layout_marginEnd">@dimen/button_margin</item>
+        <item name="android:layout_marginStart">@dimen/button_margin</item>
+        <item name="backgroundTint">@color/btn_bg_tint</item>
+        <item name="android:textColor">@color/btn_textColor</item>
+        <item name="cornerRadius">@dimen/button_roundness</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="No_bg_logo_presets">
+        <item name="android:layout_width">@dimen/No_Bg_ImageWidth</item>
+        <item name="android:layout_height">@dimen/No_Bg_ImageHeight</item>
+    </style>
+</resources>
