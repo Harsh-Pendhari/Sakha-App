@@ -12,5 +12,6 @@
     <string name="password_hint">Password</string>
     <string name="confirm_pwd_hint">Confirm Password</string>
     <string name="register_btn">Register</string>
+    <string name="error_message">Error message will appear here</string>
     <string name="already_account">Already have an account? Click Here to Login</string>
 </resources>

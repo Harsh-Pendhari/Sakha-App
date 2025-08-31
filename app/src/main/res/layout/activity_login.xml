@@ -16,7 +16,7 @@
         android:hint="@string/email_userId_hint"
         android:autofillHints="Email"
         android:drawableStart="@drawable/person_ic"
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/user_pwd"
@@ -26,7 +26,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:autofillHints="Password"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:drawableStart="@drawable/lock_ic"/>
 
     <Button
@@ -40,10 +40,21 @@
         android:background="@color/transparentBg"
         android:id="@+id/forgotPassword"/>
 
+    <TextView
+        android:id="@+id/error_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:text="@string/error_message" />
+
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="@string/login"
         style="@style/button_view_presets" />
 

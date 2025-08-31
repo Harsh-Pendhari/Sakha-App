@@ -17,6 +17,7 @@
         android:hint="@string/full_name_hint"
         android:autofillHints="Full Name"
         android:drawableStart="@drawable/person_ic"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
         android:inputType="text" />
 
     <EditText
@@ -26,8 +27,8 @@
         android:layout_width="match_parent"
         android:ems="10"
         android:hint="@string/email_hint"
-        android:inputType="textPassword"
-        android:autofillHints="Password"
+        android:inputType="textEmailAddress"
+        android:autofillHints="Email Address"
 
         android:drawableStart="@drawable/user_mail"/>
 
@@ -40,7 +41,7 @@
         android:hint="@string/phone_num_hint"
         android:inputType="phone"
         android:maxLength="10"
-        android:autofillHints="Password"
+        android:autofillHints="Mobile Number"
         android:drawableStart="@drawable/phone_num"/>
 
     <EditText
@@ -66,11 +67,21 @@
         android:drawableStart="@drawable/lock_ic"/>
 
 
+    <TextView
+        android:id="@+id/error_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:text="@string/error_message" />
 
     <Button
         android:id="@+id/register_btn"
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="@string/register_btn"
         style="@style/button_view_presets" />
 
