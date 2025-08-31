@@ -1,6 +1,7 @@
 package com.example.sakha
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
         val errorMsg = findViewById<TextView>(R.id.error_msg)
+        val loginBtn = findViewById<Button>(R.id.login_btn)
 
         errorMsg.isVisible = false
     }

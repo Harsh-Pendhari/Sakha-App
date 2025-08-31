@@ -86,7 +86,7 @@
         style="@style/button_view_presets" />
 
     <Button
-        android:id="@+id/new_registration"
+        android:id="@+id/login_btn"
         android:layout_width="380dp"
         android:layout_height="48dp"
         android:textColor="@color/blue"
