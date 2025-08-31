@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        startActivity(Intent(this, LoginActivity::class.java))
+        startActivity(Intent(this, RegisterActivity::class.java))
         finish()
     }
 }
