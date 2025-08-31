@@ -11,19 +11,31 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/state_dropdown_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/select_state_hint">
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@color/text_view_background"
+        android:elevation="5dp"
+        android:hint="@string/select_state_hint"
+        app:hintTextColor="@color/text_view_textColorHint"
+        app:boxStrokeWidth="0dp"
+        app:boxBackgroundMode="none"
+        app:hintTextAppearance="@style/CustomHintText"
+        android:textColorHint="@color/text_view_textColorHint">
 
         <AutoCompleteTextView
             android:id="@+id/stateDropdown"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="text"
-            android:hint="@string/select_state_hint"
+            android:layout_height="match_parent"
             android:completionThreshold="1"
-            android:dropDownHeight="300dp"
             android:dropDownWidth="match_parent"
-            android:padding="12dp"/>
+            android:textSize="18sp"
+            android:dropDownHeight="300dp"
+            android:hint="@string/select_state_hint"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColor="@color/text_view_textColor"
+            android:textColorHint="#913C3B3B"
+            android:layout_marginBottom="10dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

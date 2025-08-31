@@ -8,28 +8,4 @@
     android:gravity="center"
     android:id="@+id/register">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/state_dropdown_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/select_state_hint"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
-        <AutoCompleteTextView
-            style="@style/CustomAutoCompleteTextView"
-            android:id="@+id/state_dropdown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:completionThreshold="1"
-            android:dropDownHeight="300dp"
-            android:dropDownWidth="match_parent"
-            android:dropDownVerticalOffset="5dp"
-            android:inputType="text"
-            android:hint="@string/select_state_hint"
-            android:textColor="@color/blue"
-        android:textColorHint="@color/blue"
-        android:popupBackground="@color/text_view_background" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
 </LinearLayout>
