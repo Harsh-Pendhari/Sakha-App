@@ -21,5 +21,14 @@
 <!--    NO-BACKGROUND LOGO PRESETS-->
     <dimen name="No_Bg_ImageWidth">120dp</dimen>
     <dimen name="No_Bg_ImageHeight">120dp</dimen>
-
+<!--TEXT INPUT LAYER-->
+    <dimen name="layoutHeight">55dp</dimen>
+    <dimen name="layoutMarginHorizontal">10dp</dimen>
+    <dimen name="elevation">5dp</dimen>
+    <dimen name="layoutMarginTop">10dp</dimen>
+<!--AUTOCOMPLETE TEXT VIEW-->
+    <dimen name="textSizeAutocomplete">16sp</dimen>
+    <dimen name="dropDownHeightAutocomplete">300dp</dimen>
+    <dimen name="paddingAutocomplete">10dp</dimen>
+    <dimen name="layout_marginBottomAutocomplete">1dp</dimen>
 </resources>

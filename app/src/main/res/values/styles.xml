@@ -39,4 +39,28 @@
         <item name="android:textColor">@color/text_view_textColorHint</item>
     </style>
 
+    <style name="txt_input_layer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layoutHeight</item>
+        <item name="android:background">@color/text_view_background</item>
+        <item name="android:layout_marginStart">@dimen/layoutMarginHorizontal</item>
+        <item name="android:layout_marginEnd">@dimen/layoutMarginHorizontal</item>
+        <item name="android:elevation">@dimen/elevation</item>
+        <item name="android:layout_marginTop">@dimen/layoutMarginTop</item>
+        <item name="android:textColorHint">@color/text_view_textColorHint</item>
+    </style>
+
+    <style name="autocomplete_txt_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:completionThreshold">1</item>
+        <item name="android:dropDownWidth">match_parent</item>
+        <item name="android:textSize">@dimen/textSizeAutocomplete</item>
+        <item name="android:dropDownHeight">@dimen/dropDownHeightAutocomplete</item>
+        <item name="android:inputType">text</item>
+        <item name="android:padding">@dimen/paddingAutocomplete</item>
+        <item name="android:textColor">@color/text_view_textColor</item>
+        <item name="android:textColorHint">#913C3B3B</item>
+        <item name="android:layout_marginBottom">@dimen/layout_marginBottomAutocomplete</item>
+    </style>
 </resources>

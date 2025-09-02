@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -77,5 +79,19 @@ class MainActivity : AppCompatActivity() {
                 dropdownDistrict.threshold = 1        // enable filtering on first char
             }
         }
+        val unitSpinner = findViewById<Spinner>(R.id.unitSpinner)
+        val landAreaInput = findViewById<EditText>(R.id.landAreaInput)
+
+        val units = listOf("Acres", "Guntha")
+
+        val unitAdapter = ArrayAdapter(
+            this,
+            R.layout.custom_spinner_item,       // selected item layout
+            units
+        )
+        unitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item) // dropdown layout
+
+        unitSpinner.adapter = unitAdapter
+        unitSpinner.setSelection(0)
     }
 }

@@ -17,4 +17,5 @@
     <string name="select_state_hint">State</string>
     <string name="select_District_hint">District</string>
     <string name="select_Village_hint">Village</string>
+    <string name="land_area_hint">Total Land Area</string>
 </resources>
