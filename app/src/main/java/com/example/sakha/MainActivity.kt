@@ -1,13 +1,17 @@
 package com.example.sakha
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputLayout
@@ -41,6 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         val txtFieldVillage = findViewById<TextInputLayout>(R.id.village_dropdown_layout)
         val dropdownVillage = findViewById<AutoCompleteTextView>(R.id.villageDropdown)
+//
+//        val txtFieldIrrigation = findViewById<TextInputLayout>(R.id.irrigation_dropdown_layout)
+//        val irrigationDropdown = findViewById<AutoCompleteTextView>(R.id.irrigationDropdown)
 
         txtFieldState.isHintEnabled = true
         dropdownState.hint = ""
@@ -50,6 +57,9 @@ class MainActivity : AppCompatActivity() {
 
         txtFieldVillage.isHintEnabled = true
         dropdownVillage.hint = ""
+//
+//        txtFieldIrrigation.isHintEnabled = true
+//        irrigationDropdown.hint = ""
 
         // State dropdown
         val stateAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, stateList)
@@ -61,7 +71,6 @@ class MainActivity : AppCompatActivity() {
 
         // On state selection → load districts
         dropdownState.setOnItemClickListener { parent, _, position, _ ->
-            // Use the adapter's filtered item, not stateList[position]
             val selectedState = (parent.getItemAtPosition(position) as String).trim()
 
             if (stateDistricts.has(selectedState)) {
@@ -75,23 +84,95 @@ class MainActivity : AppCompatActivity() {
                 dropdownDistrict.setDropDownBackgroundResource(R.color.dropdown_bg)
                 dropdownDistrict.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
                 dropdownDistrict.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
-                dropdownDistrict.setText("", false)   // clear previous selection
-                dropdownDistrict.threshold = 1        // enable filtering on first char
+                dropdownDistrict.setText("", false)
+                dropdownDistrict.threshold = 1
             }
         }
+
+        // Unit Spinner
         val unitSpinner = findViewById<Spinner>(R.id.unitSpinner)
         val landAreaInput = findViewById<EditText>(R.id.landAreaInput)
-
         val units = listOf("Acres", "Guntha")
 
-        val unitAdapter = ArrayAdapter(
-            this,
-            R.layout.custom_spinner_item,       // selected item layout
-            units
-        )
-        unitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item) // dropdown layout
-
+        val unitAdapter = ArrayAdapter(this, R.layout.custom_spinner_item, units)
+        unitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         unitSpinner.adapter = unitAdapter
         unitSpinner.setSelection(0)
+
+
+//        // Irrigation dropdown
+//        val irrigationMethods = listOf(
+//            "Surface Irrigation", "Drip Irrigation", "Sprinkler Irrigation",
+//            "Center Pivot Irrigation", "Lateral Move Irrigation",
+//            "Sub-Irrigation", "Manual Irrigation"
+//        )
+//
+//        val irrigationAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, irrigationMethods)
+//        irrigationDropdown.setAdapter(irrigationAdapter)
+//        irrigationDropdown.setDropDownBackgroundResource(R.color.dropdown_bg)
+//        irrigationDropdown.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
+//        irrigationDropdown.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
+//        irrigationDropdown.threshold = 0 // allow showing list even without typing
+//
+//        // Show dropdown immediately when clicked (first click)
+//        irrigationDropdown.setOnClickListener {
+//            irrigationDropdown.showDropDown()
+//        }
+//
+//        // Hide when focus is lost
+//        irrigationDropdown.setOnFocusChangeListener { _, hasFocus ->
+//            if (!hasFocus) irrigationDropdown.dismissDropDown()
+//            else irrigationDropdown.showDropDown() // show immediately on first focus
+//        }
+
+
+        val irrigationMethodDropdown = findViewById<Spinner>(R.id.irrigationDropdown)
+
+// Options with the hint at index 0
+        val irrigationMethods = listOf(
+            getString(R.string.irrigation_hint), // "Irrigation Method"
+            "Surface Irrigation",
+            "Drip Irrigation",
+            "Sprinkler Irrigation",
+            "Center Pivot Irrigation",
+            "Lateral Move Irrigation",
+            "Sub-Irrigation",
+            "Manual Irrigation"
+        )
+
+        val irrigationMethodsAdapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.custom_spinner_item,
+            irrigationMethods
+        ) {
+            override fun isEnabled(position: Int): Boolean {
+                return position != 0 // Disable the first item (hint)
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent) as TextView
+                if (position == 0) {
+                    view.setTextColor(getColor(R.color.text_view_textColorHint))
+                } else {
+                    view.setTextColor(getColor(R.color.text_view_textColor))
+                }
+                return view
+            }
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                if (position == 0) {
+                    view.setTextColor(getColor(R.color.text_view_textColorHint))
+                } else {
+                    view.setTextColor(getColor(R.color.text_view_textColor))
+                }
+                return view
+            }
+        }
+
+        irrigationMethodsAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
+        irrigationMethodDropdown.adapter = irrigationMethodsAdapter
+        irrigationMethodDropdown.setSelection(0, false)
+
     }
 }
