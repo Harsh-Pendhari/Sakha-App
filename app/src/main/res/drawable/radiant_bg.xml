@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Top-left green glow -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="0.0"
+                android:centerY="0.0"
+                android:gradientRadius="800dp"
+                android:startColor="@color/gradient_green"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Bottom-right yellow glow -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="1.0"
+                android:centerY="1.0"
+                android:gradientRadius="500dp"
+                android:startColor="@color/radiant_background"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+</layer-list>
