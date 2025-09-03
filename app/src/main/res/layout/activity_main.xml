@@ -99,9 +99,38 @@
         style="@style/txt_input_layer"
         android:textAlignment="center" />
 
-    <Spinner
-        android:id="@+id/FertilizersUsedDropdown"
-        style="@style/txt_input_layer"
-        android:textAlignment="center" />
+    <RadioGroup
+        android:id="@+id/fertilizersGroup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/organic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+@string/"
+            android:textColor="@android:color/black"
+            android:padding="10dp" />
+
+        <RadioButton
+            android:id="@+id/chemical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chemical_hint"
+            android:textColor="@android:color/black"
+            android:padding="10dp" />
+
+        <RadioButton
+            android:id="@+id/both"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/both_hint"
+            android:textColor="@android:color/black"
+            android:padding="10dp" />
+    </RadioGroup>
 
 </LinearLayout>
