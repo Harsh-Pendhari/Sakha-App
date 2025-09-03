@@ -89,6 +89,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Village dropdown
+        if (stateDistricts.has("Indian_Villages")) {
+            val villagesJson = stateDistricts.getJSONArray("Indian_Villages")
+            val villageList = MutableList(villagesJson.length()) { i ->
+                villagesJson.getString(i)
+            }
+
+            val villageAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, villageList)
+            dropdownVillage.setAdapter(villageAdapter)
+            dropdownVillage.setDropDownBackgroundResource(R.color.dropdown_bg)
+
+            dropdownVillage.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
+            dropdownVillage.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
+            dropdownVillage.threshold = 1
+        }
+
         // Unit Spinner
         val unitSpinner = findViewById<Spinner>(R.id.unitSpinner)
         val landAreaInput = findViewById<EditText>(R.id.landAreaInput)

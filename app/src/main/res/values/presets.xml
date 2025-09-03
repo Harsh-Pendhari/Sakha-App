@@ -31,4 +31,6 @@
     <dimen name="dropDownHeightAutocomplete">300dp</dimen>
     <dimen name="paddingAutocomplete">10dp</dimen>
     <dimen name="layout_marginBottomAutocomplete">1dp</dimen>
+
+    <dimen name="dropdown_item_height">55dp</dimen>
 </resources>
