@@ -20,8 +20,10 @@
     <string name="land_area_hint">Total Land Area</string>
     <string name="select_Irrigation_method_hint">Irrigation Method</string>
     <string name="irrigation_hint">Irrigation Method</string>
-    <style name="organic_hint">Organic</style>
-    <style name="chemical_hint">Chemical</style>
-    <style name="both_hint">Both</style>
+    <string name="organic_hint">Organic</string>
+    <string name="chemical_hint">Chemical</string>
+    <string name="both_hint">Both</string>
+    <string name="fertilizers_hint">Fertilizers Used</string>
+    <string name="submit_btn">Submit</string>
 
 </resources>
