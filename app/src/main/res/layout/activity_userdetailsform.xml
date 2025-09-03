@@ -8,4 +8,144 @@
     android:gravity="center"
     android:id="@+id/register">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/state_dropdown_layout"
+        style="@style/txt_input_layer"
+        app:hintTextColor="@color/text_view_textColorHint"
+        app:boxStrokeWidth="0dp"
+        app:boxBackgroundMode="none"
+        app:hintTextAppearance="@style/CustomHintText"
+        android:hint="@string/select_state_hint">
+
+        <AutoCompleteTextView
+            android:id="@+id/stateDropdown"
+            style="@style/autocomplete_txt_view"
+            android:hint="@string/select_state_hint"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/district_dropdown_layout"
+        style="@style/txt_input_layer"
+        app:hintTextColor="@color/text_view_textColorHint"
+        app:boxStrokeWidth="0dp"
+        app:boxBackgroundMode="none"
+        app:hintTextAppearance="@style/CustomHintText"
+        android:hint="@string/select_District_hint">
+
+        <AutoCompleteTextView
+            android:id="@+id/districtDropdown"
+            style="@style/autocomplete_txt_view"
+            android:hint="@string/select_District_hint"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/village_dropdown_layout"
+        style="@style/txt_input_layer"
+        app:hintTextColor="@color/text_view_textColorHint"
+        app:boxStrokeWidth="0dp"
+        app:boxBackgroundMode="none"
+        app:hintTextAppearance="@style/CustomHintText"
+        android:hint="@string/select_Village_hint">
+
+        <AutoCompleteTextView
+            android:id="@+id/villageDropdown"
+            style="@style/autocomplete_txt_view"
+            android:hint="@string/select_Village_hint"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/land_area_container"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/text_view_background"
+        android:layout_marginHorizontal="10dp"
+        android:elevation="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <!-- Unit Dropdown (Spinner) -->
+        <Spinner
+            android:id="@+id/unitSpinner"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:textAlignment="center" />
+        <!-- Land Area Input -->
+        <EditText
+            android:id="@+id/landAreaInput"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="@string/land_area_hint"
+            android:inputType="numberDecimal"
+            android:autofillHints="Land Area"
+            android:textSize="16sp"
+            android:background="@null"
+            android:padding="10dp"
+            android:textColor="@color/text_view_textColor"
+            android:textColorHint="@color/text_view_textColorHint"/>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/irrigationDropdown"
+        style="@style/txt_input_layer"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/soilTypeDropdown"
+        style="@style/txt_input_layer"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/waterSourceDropdown"
+        style="@style/txt_input_layer"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/fertilizerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fertilizers_hint"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+    <RadioGroup
+        android:id="@+id/fertilizersGroup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/organic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/organic_hint"
+            android:textColor="@android:color/black"
+            android:padding="10dp" />
+
+        <RadioButton
+            android:id="@+id/chemical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chemical_hint"
+            android:textColor="@android:color/black"
+            android:padding="10dp" />
+
+        <RadioButton
+            android:id="@+id/both"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/both_hint"
+            android:textColor="@android:color/black"
+            android:padding="10dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/button_view_presets"
+        android:layout_width="match_parent"
+        android:text="@string/submit_btn"/>
+
 </LinearLayout>
