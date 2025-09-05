@@ -63,4 +63,17 @@
         <item name="android:textColorHint">#913C3B3B</item>
         <item name="android:layout_marginBottom">@dimen/layout_marginBottomAutocomplete</item>
     </style>
+
+    <style name="GridImageButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/rounded_button_bg</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
 </resources>

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@drawable/radiant_bg">
 
     <!-- Top bar -->
     <LinearLayout
@@ -20,10 +21,9 @@
         <!-- Hamburger Menu -->
         <ImageButton
             android:id="@+id/hamMenu"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/ham_menu"
-            android:src=""
             android:contentDescription="@string/ham_menu" />
 
         <!-- Welcome Text -->
@@ -38,15 +38,13 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Grid of buttons -->
+    <!-- Grid of ImageButtons -->
     <GridLayout
         android:id="@+id/buttonGrid"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginHorizontal="10dp"
-        android:rowCount="8"
+        android:layout_marginVertical="25dp"
+        android:rowCount="4"
         android:columnCount="2"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/topBar"
@@ -54,64 +52,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Example buttons -->
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="25"
-            android:text="Button 1" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 2" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 1" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 2" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 1" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 2" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 1" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Button 2" />
-
+        <!-- 8 Image Buttons -->
+        <ImageButton android:id="@+id/btn1" style="@style/GridImageButtonStyle" android:src="@drawable/mycrops"/>
+        <ImageButton android:id="@+id/btn2" style="@style/GridImageButtonStyle" android:src="@drawable/irrigation"/>
+        <ImageButton android:id="@+id/btn3" style="@style/GridImageButtonStyle" android:src="@drawable/basket"/>
+        <ImageButton android:id="@+id/btn4" style="@style/GridImageButtonStyle" android:src="@drawable/pest"/>
+        <ImageButton android:id="@+id/btn5" style="@style/GridImageButtonStyle" android:src="@drawable/weather"/>
+        <ImageButton android:id="@+id/btn6" style="@style/GridImageButtonStyle" android:src="@drawable/market"/>
+        <ImageButton android:id="@+id/btn7" style="@style/GridImageButtonStyle" android:src="@drawable/ic_launcher_foreground"/>
+        <ImageButton android:id="@+id/btn8" style="@style/GridImageButtonStyle" android:src="@drawable/ic_launcher_foreground"/>
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

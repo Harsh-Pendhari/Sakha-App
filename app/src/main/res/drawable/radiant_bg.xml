@@ -21,7 +21,7 @@
                 android:type="radial"
                 android:centerX="1.0"
                 android:centerY="1.0"
-                android:gradientRadius="500dp"
+                android:gradientRadius="800dp"
                 android:startColor="@color/radiant_background"
                 android:endColor="@android:color/transparent" />
         </shape>
