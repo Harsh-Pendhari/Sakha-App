@@ -25,5 +25,6 @@
     <string name="both_hint">Both</string>
     <string name="fertilizers_hint">Fertilizers Used</string>
     <string name="submit_btn">Submit</string>
+    <string name="ham_menu">hamburger menu</string>
 
 </resources>
