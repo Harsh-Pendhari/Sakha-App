@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        startActivity(Intent(this, UserdetailsformActivity::class.java))
+        startActivity(Intent(this, HomepageActivity::class.java))
         finish()
     }
 }
