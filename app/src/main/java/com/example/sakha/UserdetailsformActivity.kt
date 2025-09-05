@@ -1,11 +1,13 @@
 package com.example.sakha
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -189,6 +191,14 @@ class UserdetailsformActivity : AppCompatActivity() {
         irrigationMethodsAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         irrigationMethodDropdown.adapter = irrigationMethodsAdapter
         irrigationMethodDropdown.setSelection(0, false)
+
+        // SUBMIT BUTTON
+        val submit_btn = findViewById<Button>(R.id.submit)
+
+        submit_btn.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
 
     }
 }
