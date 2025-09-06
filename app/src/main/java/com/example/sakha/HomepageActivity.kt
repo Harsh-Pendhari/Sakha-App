@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -28,6 +29,9 @@ class HomepageActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val homeTxt = findViewById<TextView>(R.id.welcomeText)
+
+        homeTxt.setText("Dashboard")
 
 
     }

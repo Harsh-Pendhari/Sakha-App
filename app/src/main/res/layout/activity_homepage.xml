@@ -8,12 +8,10 @@
     android:background="@drawable/radiant_bg">
 
     <!-- Top bar -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -23,21 +21,27 @@
             android:id="@+id/hamMenu"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="3.5dp"
+            android:layout_margin="8dp"
             android:background="@drawable/ham_menu"
-            android:contentDescription="@string/ham_menu" />
+            android:contentDescription="@string/ham_menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <!-- Welcome Text -->
         <TextView
             android:id="@+id/welcomeText"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
             android:text="Welcome Farmer"
             android:textSize="22sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Grid of ImageButtons -->
     <GridLayout

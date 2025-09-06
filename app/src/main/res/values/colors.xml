@@ -20,4 +20,5 @@
     <color name="radiant_background">#FFE3B8</color>
     <color name="gradient_green">#D1FFAD</color>
 
+    <color name="ripple_color">#D1FFAD</color>
 </resources>
