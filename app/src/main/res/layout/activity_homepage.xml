@@ -23,6 +23,7 @@
             android:id="@+id/hamMenu"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="3.5dp"
             android:background="@drawable/ham_menu"
             android:contentDescription="@string/ham_menu" />
 
@@ -59,8 +60,8 @@
         <ImageButton android:id="@+id/btn4" style="@style/GridImageButtonStyle" android:src="@drawable/pest"/>
         <ImageButton android:id="@+id/btn5" style="@style/GridImageButtonStyle" android:src="@drawable/weather"/>
         <ImageButton android:id="@+id/btn6" style="@style/GridImageButtonStyle" android:src="@drawable/market"/>
-        <ImageButton android:id="@+id/btn7" style="@style/GridImageButtonStyle" android:src="@drawable/ic_launcher_foreground"/>
-        <ImageButton android:id="@+id/btn8" style="@style/GridImageButtonStyle" android:src="@drawable/ic_launcher_foreground"/>
+        <ImageButton android:id="@+id/btn7" style="@style/GridImageButtonStyle" android:src="@drawable/idea"/>
+        <ImageButton android:id="@+id/btn8" style="@style/GridImageButtonStyle" android:src="@drawable/gov_schemes"/>
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

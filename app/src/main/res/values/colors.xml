@@ -17,7 +17,7 @@
 
     <color name="dropdown_bg">#C2F6D3</color>
 
-    <color name="radiant_background">#F2C746</color>
-    <color name="gradient_green">#80DB61</color>
+    <color name="radiant_background">#FFE3B8</color>
+    <color name="gradient_green">#D1FFAD</color>
 
 </resources>

@@ -8,9 +8,9 @@
                 android:type="radial"
                 android:centerX="0.0"
                 android:centerY="0.0"
-                android:gradientRadius="800dp"
+                android:gradientRadius="900dp"
                 android:startColor="@color/gradient_green"
-                android:endColor="@android:color/transparent" />
+                android:endColor="@android:color/white" />
         </shape>
     </item>
 
@@ -21,7 +21,7 @@
                 android:type="radial"
                 android:centerX="1.0"
                 android:centerY="1.0"
-                android:gradientRadius="800dp"
+                android:gradientRadius="900dp"
                 android:startColor="@color/radiant_background"
                 android:endColor="@android:color/transparent" />
         </shape>
