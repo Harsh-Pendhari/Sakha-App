@@ -7,7 +7,6 @@
     android:padding="10dp"
     android:background="@drawable/radiant_bg">
 
-    <!-- Top bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -16,7 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Hamburger Menu -->
         <ImageButton
             android:id="@+id/hamMenu"
             android:layout_width="50dp"
@@ -28,7 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <!-- Welcome Text -->
         <TextView
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
@@ -43,7 +40,6 @@
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Grid of ImageButtons -->
     <GridLayout
         android:id="@+id/buttonGrid"
         android:layout_width="0dp"
@@ -57,15 +53,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- 8 Image Buttons -->
-        <ImageButton android:id="@+id/btn1" style="@style/GridImageButtonStyle" android:src="@drawable/mycrops"/>
-        <ImageButton android:id="@+id/btn2" style="@style/GridImageButtonStyle" android:src="@drawable/irrigation"/>
-        <ImageButton android:id="@+id/btn3" style="@style/GridImageButtonStyle" android:src="@drawable/basket"/>
-        <ImageButton android:id="@+id/btn4" style="@style/GridImageButtonStyle" android:src="@drawable/pest"/>
-        <ImageButton android:id="@+id/btn5" style="@style/GridImageButtonStyle" android:src="@drawable/weather"/>
-        <ImageButton android:id="@+id/btn6" style="@style/GridImageButtonStyle" android:src="@drawable/market"/>
-        <ImageButton android:id="@+id/btn7" style="@style/GridImageButtonStyle" android:src="@drawable/idea"/>
-        <ImageButton android:id="@+id/btn8" style="@style/GridImageButtonStyle" android:src="@drawable/gov_schemes"/>
+        <ImageButton
+            android:id="@+id/btn1"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/mycrops"
+            android:contentDescription="@string/crop"/>
+
+        <ImageButton
+            android:id="@+id/btn2"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/irrigation"
+            android:contentDescription="@string/irrigation"/>
+
+        <ImageButton
+            android:id="@+id/btn3"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/basket"
+            android:contentDescription="@string/basket"/>
+
+        <ImageButton
+            android:id="@+id/btn4"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/pest"
+            android:contentDescription="@string/fertilizer"/>
+
+        <ImageButton
+            android:id="@+id/btn5"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/weather"
+            android:contentDescription="@string/weather"/>
+
+        <ImageButton
+            android:id="@+id/btn6"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/market"
+            android:contentDescription="@string/Market"/>
+
+        <ImageButton
+            android:id="@+id/btn7"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/idea"
+            android:contentDescription="@string/ideas"/>
+
+        <ImageButton
+            android:id="@+id/btn8"
+            style="@style/GridImageButtonStyle"
+            android:src="@drawable/gov_schemes"
+            android:contentDescription="@string/gov_schemes"/>
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

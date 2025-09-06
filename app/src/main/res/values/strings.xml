@@ -26,5 +26,13 @@
     <string name="fertilizers_hint">Fertilizers Used</string>
     <string name="submit_btn">Submit</string>
     <string name="ham_menu">hamburger menu</string>
+    <string name="fertilizer">Fertilizers</string>
+    <string name="crop">My Crops</string>
+    <string name="irrigation">Irrigation</string>
+    <string name="Market">Market Price</string>
+    <string name="weather">Weather</string>
+    <string name="gov_schemes">Government Schemes</string>
+    <string name="ideas">Ideas and Schemes</string>
+    <string name="basket">Fertilizers</string>
 
 </resources>
