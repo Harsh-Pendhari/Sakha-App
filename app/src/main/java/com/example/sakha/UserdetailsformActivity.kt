@@ -192,6 +192,84 @@ class UserdetailsformActivity : AppCompatActivity() {
         irrigationMethodDropdown.adapter = irrigationMethodsAdapter
         irrigationMethodDropdown.setSelection(0, false)
 
+
+        val soilTypes = listOf("Select Soil Type","Red","Black","Sandy","Loamy")
+        val soilTypeDropdown = findViewById<Spinner>(R.id.soilTypeDropdown)
+
+        val soilTypeAdapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.custom_spinner_item,
+            soilTypes
+        ) {
+            override fun isEnabled(position: Int): Boolean {
+                return position != 0 // Disable the first item (hint)
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent) as TextView
+                if (position == 0) {
+                    view.setTextColor(getColor(R.color.text_view_textColorHint))
+                } else {
+                    view.setTextColor(getColor(R.color.text_view_textColor))
+                }
+                return view
+            }
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                if (position == 0) {
+                    view.setTextColor(getColor(R.color.text_view_textColorHint))
+                } else {
+                    view.setTextColor(getColor(R.color.text_view_textColor))
+                }
+                return view
+            }
+        }
+
+        soilTypeAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
+        soilTypeDropdown.adapter = soilTypeAdapter
+        soilTypeDropdown.setSelection(0, false)
+
+
+        val waterSources = listOf("Select Water Source","Canal Irrigation","River/ Stream","Well","Tube Well/ Bore-well","Tank/ Pond",
+            "Rainwater Harvesting","Lake","Dam/ Reservoir","Groundwater","Check Dam/ Farm Pond")
+
+        val waterSourcesDropdown = findViewById<Spinner>(R.id.waterSourceDropdown)
+
+        val waterSourcesAdapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.custom_spinner_item,
+            waterSources
+        ) {
+            override fun isEnabled(position: Int): Boolean {
+                return position != 0 // Disable the first item (hint)
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent) as TextView
+                if (position == 0) {
+                    view.setTextColor(getColor(R.color.text_view_textColorHint))
+                } else {
+                    view.setTextColor(getColor(R.color.text_view_textColor))
+                }
+                return view
+            }
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                if (position == 0) {
+                    view.setTextColor(getColor(R.color.text_view_textColorHint))
+                } else {
+                    view.setTextColor(getColor(R.color.text_view_textColor))
+                }
+                return view
+            }
+        }
+
+        waterSourcesAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
+        waterSourcesDropdown.adapter = waterSourcesAdapter
+        waterSourcesDropdown.setSelection(0, false)
+
         // SUBMIT BUTTON
         val submit_btn = findViewById<Button>(R.id.submit)
 

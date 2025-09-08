@@ -26,12 +26,18 @@ class LoginActivity : AppCompatActivity() {
         val errorMsg = findViewById<TextView>(R.id.error_msg)
         val registerBtn = findViewById<Button>(R.id.new_registration)
         val emailInput = findViewById<EditText>(R.id.userid)
+        val loginBtn = findViewById<Button>(R.id.login_btn)
 
         forgotPassword.isVisible = false
         errorMsg.isVisible = false
 
         registerBtn.setOnClickListener{
             startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+
+        loginBtn.setOnClickListener{
+            startActivity(Intent(this, UserdetailsformActivity::class.java))
             finish()
         }
 
