@@ -90,14 +90,15 @@
         android:textAlignment="center" />
 
     <Spinner
+        android:id="@+id/waterSourceDropdown"
+        style="@style/txt_input_layer"
+        android:textAlignment="center" />
+    
+    <Spinner
         android:id="@+id/soilTypeDropdown"
         style="@style/txt_input_layer"
         android:textAlignment="center" />
 
-    <Spinner
-        android:id="@+id/waterSourceDropdown"
-        style="@style/txt_input_layer"
-        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/fertilizerLabel"
