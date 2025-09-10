@@ -2,7 +2,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/teal_200"
+    android:background="@color/gradient_green"
     android:gravity="bottom"
     android:padding="16dp">
 
