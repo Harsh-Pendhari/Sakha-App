@@ -11,11 +11,15 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONObject
 
@@ -33,6 +37,25 @@ class HomepageActivity : AppCompatActivity() {
 
         homeTxt.setText("Dashboard")
 
+
+        drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        navigationView = findViewById<NavigationView>(R.id.navigationView)
+
+        val hamMenu: ImageButton = findViewById(R.id.hamMenu)
+        hamMenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_dashboard -> Toast.makeText(this, "Dashboard clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_settings -> Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_logout -> finish()
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
 
     }
 }
