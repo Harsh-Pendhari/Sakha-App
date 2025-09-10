@@ -38,8 +38,8 @@ class HomepageActivity : AppCompatActivity() {
         homeTxt.setText("Dashboard")
 
 
-        drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
-        navigationView = findViewById<NavigationView>(R.id.navigationView)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val navigationView = findViewById<NavigationView>(R.id.navigationView)
 
         val hamMenu: ImageButton = findViewById(R.id.hamMenu)
         hamMenu.setOnClickListener {
