@@ -1,105 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:background="@drawable/radiant_bg">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="@drawable/radiant_bg">
 
-        <ImageButton
-            android:id="@+id/hamMenu"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/ham_menu"
-            android:contentDescription="@string/ham_menu"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:id="@+id/welcomeText"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topBar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Welcome Farmer"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/hamMenu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/ham_menu"
+                android:contentDescription="@string/ham_menu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome Farmer"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <GridLayout
+            android:id="@+id/buttonGrid"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="25dp"
+            android:rowCount="4"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/topBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn1"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/mycrops"
+                android:contentDescription="@string/crop"/>
+
+            <ImageButton
+                android:id="@+id/btn2"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/irrigation"
+                android:contentDescription="@string/irrigation"/>
+
+            <ImageButton
+                android:id="@+id/btn3"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/basket"
+                android:contentDescription="@string/basket"/>
+
+            <ImageButton
+                android:id="@+id/btn4"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/pest"
+                android:contentDescription="@string/fertilizer"/>
+
+            <ImageButton
+                android:id="@+id/btn5"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/weather"
+                android:contentDescription="@string/weather"/>
+
+            <ImageButton
+                android:id="@+id/btn6"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/market"
+                android:contentDescription="@string/Market"/>
+
+            <ImageButton
+                android:id="@+id/btn7"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/idea"
+                android:contentDescription="@string/ideas"/>
+
+            <ImageButton
+                android:id="@+id/btn8"
+                style="@style/GridImageButtonStyle"
+                android:src="@drawable/gov_schemes"
+                android:contentDescription="@string/gov_schemes"/>
+        </GridLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <GridLayout
-        android:id="@+id/buttonGrid"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginVertical="25dp"
-        android:rowCount="4"
-        android:columnCount="2"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/topBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageButton
-            android:id="@+id/btn1"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/mycrops"
-            android:contentDescription="@string/crop"/>
-
-        <ImageButton
-            android:id="@+id/btn2"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/irrigation"
-            android:contentDescription="@string/irrigation"/>
-
-        <ImageButton
-            android:id="@+id/btn3"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/basket"
-            android:contentDescription="@string/basket"/>
-
-        <ImageButton
-            android:id="@+id/btn4"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/pest"
-            android:contentDescription="@string/fertilizer"/>
-
-        <ImageButton
-            android:id="@+id/btn5"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/weather"
-            android:contentDescription="@string/weather"/>
-
-        <ImageButton
-            android:id="@+id/btn6"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/market"
-            android:contentDescription="@string/Market"/>
-
-        <ImageButton
-            android:id="@+id/btn7"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/idea"
-            android:contentDescription="@string/ideas"/>
-
-        <ImageButton
-            android:id="@+id/btn8"
-            style="@style/GridImageButtonStyle"
-            android:src="@drawable/gov_schemes"
-            android:contentDescription="@string/gov_schemes"/>
-    </GridLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.navigation.NavigationView
+    android:id="@+id/navigationView"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    app:headerLayout="@layout/nav_header"
+    app:menu="@menu/drawer_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>
