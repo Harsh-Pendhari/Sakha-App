@@ -2,7 +2,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/gradient_green"
+    android:background="@color/background"
     android:gravity="bottom"
     android:padding="16dp">
 
@@ -31,15 +31,17 @@
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="John Doe"
+                android:text="Harsh"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/userLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Maharashtra, Pune"
+                android:textColor="@color/black"
+                android:text="Maharashtra, Raigad"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
