@@ -1,12 +1,15 @@
 package com.example.sakha
 
+import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Spinner
@@ -49,8 +52,14 @@ class HomepageActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_dashboard -> Toast.makeText(this, "Dashboard clicked", Toast.LENGTH_SHORT).show()
+
+                R.id.nav_dashboard -> {
+                    startActivity(Intent(this, HomepageActivity::class.java))
+                    finish()
+                }
+
                 R.id.nav_settings -> Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
+                
                 R.id.nav_logout -> finish()
             }
             drawerLayout.closeDrawers()
