@@ -53,7 +53,6 @@ class HomepageActivity : AppCompatActivity() {
 
         marketBTN.setOnClickListener{
             startActivity(Intent(this, MarketActivity::class.java))
-            finish()
         }
 
         navigationView.setNavigationItemSelectedListener { item ->

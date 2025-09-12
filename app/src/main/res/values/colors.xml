@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#242121</color>
+    <color name="gray">#353131</color>
     <color name="background">#FFF8E1</color>
 
     <color name="text_view_background">#CAF0F8</color>
@@ -21,5 +21,5 @@
     <color name="radiant_background">#FFE3B8</color>
     <color name="gradient_green">#D1FFAD</color>
 
-    <color name="ripple_color">#D1FFAD</color>
+    <color name="market_bg">#FDFAF5</color>
 </resources>

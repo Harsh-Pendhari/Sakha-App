@@ -77,4 +77,12 @@
         <item name="android:padding">15dp</item>
     </style>
 
+    <style name="market_stylePresets">
+        <item name="android:layout_width">325dp</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:background">@color/transparentBg</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:elevation">10dp</item>
+    </style>
 </resources>
