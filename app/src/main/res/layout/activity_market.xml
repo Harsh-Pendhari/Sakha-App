@@ -28,6 +28,25 @@
         android:id="@+id/fruits_and_vegetables"
         android:text="@string/fruitandvegetables"
         android:drawableLeft=""
+        android:layout_marginTop="25dp"
+        style="@style/market_stylePresets"/>
+
+    <Button
+        android:id="@+id/crops"
+        android:text="@string/fruitandvegetables"
+        app:icon = "@drawable/crops_icon"
+        style="@style/market_stylePresets"/>
+
+    <Button
+        android:id="@+id/livestock"
+        android:text="@string/fruitandvegetables"
+        android:drawableLeft=""
+        style="@style/market_stylePresets"/>
+
+    <Button
+        android:id="@+id/agriculture"
+        android:text="@string/fruitandvegetables"
+        android:drawableLeft=""
         style="@style/market_stylePresets"/>
 
 </LinearLayout>
