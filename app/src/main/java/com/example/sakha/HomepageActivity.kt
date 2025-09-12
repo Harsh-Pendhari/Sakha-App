@@ -51,6 +51,11 @@ class HomepageActivity : AppCompatActivity() {
 
         val marketBTN = findViewById<ImageButton>(R.id.market_btn)
 
+        marketBTN.setOnClickListener{
+            startActivity(Intent(this, MarketActivity::class.java))
+            finish()
+        }
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
