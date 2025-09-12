@@ -34,8 +34,12 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/crops"
         android:text="@string/crops"
-        android:drawableLeft="@drawable/crops_icon"
+        app:iconTint="@null"
+        app:icon="@drawable/crops_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
         style="@style/market_stylePresets"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/livestock"
