@@ -19,38 +19,54 @@
         android:textStyle="bold"/>
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
         android:contentDescription="@string/market_place"
         android:src="@drawable/market_pfp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fruits_and_vegetables"
         android:text="@string/fruitandvegetables"
-
-        android:layout_marginTop="25dp"
-        style="@style/market_stylePresets"/>
+        app:icon="@drawable/apple_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="24dp"
+        app:iconTint="@null"
+        style="@style/market_stylePresets"
+        app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/crops"
         android:text="@string/crops"
-        app:iconTint="@null"
         app:icon="@drawable/crops_icon"
         app:iconGravity="textStart"
-        app:iconPadding="8dp"
-        style="@style/market_stylePresets"/>
+        app:iconPadding="12dp"
+        app:iconSize="24dp"
+        app:iconTint="@null"
+        style="@style/market_stylePresets"
+        app:strokeWidth="0dp"/>
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/livestock"
         android:text="@string/livestock"
-
-        style="@style/market_stylePresets"/>
+        app:icon="@drawable/livestock_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="24dp"
+        app:iconTint="@null"
+        style="@style/market_stylePresets"
+        app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/agriculture"
         android:text="@string/agriculture"
-
-        style="@style/market_stylePresets"/>
+        app:icon="@drawable/agriculture_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="24dp"
+        app:iconTint="@null"
+        style="@style/market_stylePresets"
+        app:strokeWidth="0dp"/>
 
 </LinearLayout>
