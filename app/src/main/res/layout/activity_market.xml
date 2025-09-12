@@ -27,7 +27,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fruits_and_vegetables"
         android:text="@string/fruitandvegetables"
-        android:drawableLeft=""
+
         android:layout_marginTop="25dp"
         style="@style/market_stylePresets"/>
 
@@ -40,13 +40,13 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/livestock"
         android:text="@string/livestock"
-        android:drawableLeft=""
+
         style="@style/market_stylePresets"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/agriculture"
         android:text="@string/agriculture"
-        android:drawableLeft=""
+
         style="@style/market_stylePresets"/>
 
 </LinearLayout>
