@@ -36,5 +36,8 @@
     <string name="basket">Fertilizers</string>
     <string name="market_place">Market Place</string>
     <string name="fruitandvegetables">Fruits &amp; Vegetables</string>
+    <string name="crops">Crops</string>
+    <string name="livestock">Livestock</string>
+    <string name="agriculture">Agriculture</string>
 
 </resources>
