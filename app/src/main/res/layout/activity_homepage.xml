@@ -70,7 +70,7 @@
                 android:contentDescription="@string/irrigation"/>
 
             <ImageButton
-                android:id="@+id/btn3"
+                android:id="@+id/market_btn"
                 style="@style/GridImageButtonStyle"
                 android:src="@drawable/basket"
                 android:contentDescription="@string/basket"/>
