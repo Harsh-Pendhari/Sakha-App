@@ -13,6 +13,13 @@
         android:layout_height="55dp"
         android:text="@string/market_place"
         android:textAlignment="center"
-        android:textSize="30dp"/>
+        android:textSize="40sp"
+        android:textColor="@color/gray"/>
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:contentDescription="@string/market_place"
+        android:src=""/>
 
 </LinearLayout>
