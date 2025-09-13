@@ -44,12 +44,11 @@ class WeatherActivity : AppCompatActivity() {
                 val url =
                     "https://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&units=metric&appid=$apiKey"
                 val response = URL(url).readText()
-                Log.d("WEATHER_API", response) // debug: raw JSON in Logcat
+                // Log.d("WEATHER_API", response)debug
 
                 val json = JSONObject(response)
                 val list = json.getJSONArray("list")
 
-                // Group list items by date (yyyy-MM-dd) in insertion order
                 val dateGroups = LinkedHashMap<String, MutableList<JSONObject>>()
                 val dtFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
@@ -67,10 +66,8 @@ class WeatherActivity : AppCompatActivity() {
                     group.add(item)
                 }
 
-                // Build WeatherInfo list picking one representative item per date (prefer 12:00)
                 val forecasts = mutableListOf<WeatherInfo>()
 
-                // Determine todayKey to label first entry "Today"
                 val todayKey = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
                 val dateKeys = dateGroups.keys.toList()
@@ -78,7 +75,6 @@ class WeatherActivity : AppCompatActivity() {
                     if (forecasts.size >= 4) break
 
                     val entries = dateGroups[key]!!
-                    // Try to find 12:00:00 entry
                     val noonEntry = entries.find { e ->
                         val dtTxt = e.optString("dt_txt", "")
                         dtTxt.endsWith("12:00:00")
@@ -160,7 +156,6 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun formatTemp(t: Double): String {
-        // format to 1 decimal if needed
         return String.format(Locale.getDefault(), "%.0f\u00B0C", t)
     }
 
