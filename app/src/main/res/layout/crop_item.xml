@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/FarmtipsBg"
         android:padding="16dp">
 
         <TextView
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Wheat"
             android:textColor="@color/darkGreen_text"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"/>
 
         <TextView
