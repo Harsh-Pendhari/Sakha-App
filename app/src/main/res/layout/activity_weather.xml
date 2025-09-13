@@ -59,7 +59,7 @@
         app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/agriculture"
+        android:id="@+id/day2"
         android:text="@string/nextday2"
         app:icon="@drawable/sunny_icon"
         app:iconGravity="end"

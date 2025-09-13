@@ -26,6 +26,7 @@
     <color name="FarmtipsBg">#FFFDF6</color>
 
     <color name="weatherBg">#BDECFE</color>
+    <color name="weatherbtnBg">#72BCBCBC</color>
 
     <color name="market_bg">#FDFAF5</color>
 </resources>
