@@ -31,7 +31,7 @@
     <string name="irrigation">Irrigation</string>
     <string name="Market">Market Price</string>
     <string name="weather">Weather</string>
-    <string name="gov_schemes">Government Schemes</string>
+    <string name="gov_schemes">Government\nSchemes</string>
     <string name="ideas">Ideas and Schemes</string>
     <string name="basket">Fertilizers</string>
     <string name="market_place">Market Place</string>
@@ -39,5 +39,21 @@
     <string name="crops">Crops</string>
     <string name="livestock">Livestock</string>
     <string name="agriculture">Agriculture</string>
+    <string name="scheme1">Pradhan Mantri Kisan MaanDhan Yojana (PM-KMY)</string>
+    <string name="scheme2">Agriculture Infrastructure Fund (AIF)</string>
+    <string name="scheme3">Soil Health Card (SHC)</string>
+    <string name="scheme4">Pradhan Mantri Kisan Samman Nidhi</string>
+    <string name="scheme5">PM Kisan</string>
+    <string name="scheme6">PM Fasal Bima Yojana</string>
+    <string name="scheme7">PM Krishi Sinchayee Yojana</string>
+    <string name="farming_tips">Farming Tips</string>
+    <string name="soil_prep">Soil Preparation</string>
+    <string name="irrigation_tab">Irrigation</string>
+    <string name="crop_rotation">Crop Rotation</string>
+    <string name="pest_management">Pest Management</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="nextday1">Overmorrow</string>
+    <string name="nextday2">Day after tomorrow</string>
 
 </resources>

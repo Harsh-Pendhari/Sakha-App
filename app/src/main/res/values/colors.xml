@@ -21,5 +21,11 @@
     <color name="radiant_background">#FFE3B8</color>
     <color name="gradient_green">#D1FFAD</color>
 
+    <color name="darkGreen_text">#245633</color>
+
+    <color name="FarmtipsBg">#FFFDF6</color>
+
+    <color name="weatherBg">#BDECFE</color>
+
     <color name="market_bg">#FDFAF5</color>
 </resources>

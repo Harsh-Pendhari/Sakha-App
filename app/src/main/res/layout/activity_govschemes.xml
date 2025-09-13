@@ -10,64 +10,92 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="@string/market_place"
+        android:layout_height="90dp"
+        android:text="@string/gov_schemes"
         android:textAlignment="center"
-        android:textSize="40sp"
-        android:layout_marginBottom="25dp"
+        android:textSize="35sp"
         android:textColor="@color/gray"
         android:textStyle="bold"/>
 
     <ImageView
         android:layout_width="225dp"
         android:layout_height="225dp"
-        android:contentDescription="@string/market_place"
-        android:src="@drawable/market_pfp"/>
+        android:contentDescription="@string/gov_schemes"
+        android:src="@drawable/govschemespfp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:layout_marginTop="25dp"
-        android:id="@+id/fruits_and_vegetables"
-        android:text="@string/fruitandvegetables"
+        android:id="@+id/scheme1"
+        android:text="@string/scheme1"
         app:icon="@drawable/apple_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
         app:iconTint="@null"
+        android:layout_width="325dp"
         style="@style/market_stylePresets"
         app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/crops"
-        android:text="@string/crops"
+        android:id="@+id/scheme2"
+        android:text="@string/scheme2"
         app:icon="@drawable/crops_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
         app:iconTint="@null"
+        android:layout_width="325dp"
         style="@style/market_stylePresets"
         app:strokeWidth="0dp"/>
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/livestock"
-        android:text="@string/livestock"
+        android:id="@+id/scheme3"
+        android:text="@string/scheme3"
         app:icon="@drawable/livestock_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
         app:iconTint="@null"
+        android:layout_width="325dp"
         style="@style/market_stylePresets"
         app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/agriculture"
-        android:text="@string/agriculture"
+        android:id="@+id/scheme4"
+        android:text="@string/scheme4"
         app:icon="@drawable/agriculture_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
         app:iconTint="@null"
+        android:layout_width="325dp"
         style="@style/market_stylePresets"
         app:strokeWidth="0dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/scheme5"
+        android:text="@string/scheme5"
+        app:icon="@drawable/agriculture_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="24dp"
+        app:iconTint="@null"
+        android:layout_width="325dp"
+        style="@style/market_stylePresets"
+        app:strokeWidth="0dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/scheme6"
+        android:text="@string/scheme6"
+        app:icon="@drawable/agriculture_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="24dp"
+        app:iconTint="@null"
+        android:layout_width="325dp"
+        style="@style/market_stylePresets"
+        app:strokeWidth="0dp"/>
+
+
 
 </LinearLayout>

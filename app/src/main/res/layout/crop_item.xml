@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/cropName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wheat"
+            android:textColor="@color/darkGreen_text"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/cropType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type: Grain"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/gray"/>
+
+        <TextView
+            android:id="@+id/cropPlanted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planted: 15 Aug 2025"
+            android:textSize="16sp"
+            android:layout_marginTop="2dp"
+            android:textStyle="bold"
+            android:textColor="@color/gray"/>
+
+        <TextView
+            android:id="@+id/cropStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: Growing"
+            android:textSize="16sp"
+            android:layout_marginTop="2dp"
+            android:textStyle="bold"
+            android:textColor="@color/gray"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

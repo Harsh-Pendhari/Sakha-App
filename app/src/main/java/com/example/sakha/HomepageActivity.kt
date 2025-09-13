@@ -55,6 +55,22 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(Intent(this, MarketActivity::class.java))
         }
 
+        val myCropsBTN = findViewById<ImageButton>(R.id.myCrops)
+        myCropsBTN.setOnClickListener {
+            startActivity(Intent(this, MycropsActivity::class.java))
+        }
+
+        val govBTN = findViewById<ImageButton>(R.id.government_schemesBTN)
+        govBTN.setOnClickListener {
+            startActivity(Intent(this, GovSchemesActivity::class.java))
+        }
+
+        val ideasTipsBTN = findViewById<ImageButton>(R.id.tips_btn)
+        ideasTipsBTN.setOnClickListener {
+            startActivity(Intent(this, FarmingtipsActivity::class.java))
+        }
+
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()

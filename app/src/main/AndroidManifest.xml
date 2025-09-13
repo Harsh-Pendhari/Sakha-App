@@ -26,6 +26,9 @@
         <activity android:name=".UserdetailsformActivity" android:exported="false"/>
         <activity android:name=".HomepageActivity" android:exported="false"/>
         <activity android:name=".MarketActivity" android:exported="false"/>
+        <activity android:name=".MycropsActivity" android:exported="false"/>
+        <activity android:name=".FarmingtipsActivity" android:exported="false"/>
+        <activity android:name=".GovSchemesActivity" android:exported="false"/>
     </application>
 
 </manifest>

@@ -6,12 +6,12 @@
     android:orientation="vertical"
     android:background="@color/market_bg"
     android:gravity="center"
-    android:id="@+id/market">
+    android:id="@+id/farmingtips">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="@string/market_place"
+        android:text="@string/farming_tips"
         android:textAlignment="center"
         android:textSize="40sp"
         android:layout_marginBottom="25dp"
@@ -21,13 +21,12 @@
     <ImageView
         android:layout_width="225dp"
         android:layout_height="225dp"
-        android:contentDescription="@string/market_place"
-        android:src="@drawable/market_pfp"/>
+        android:contentDescription="@string/farming_tips"
+        android:src="@drawable/farmingtipspfp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:layout_marginTop="25dp"
         android:id="@+id/fruits_and_vegetables"
-        android:text="@string/fruitandvegetables"
+        android:text="@string/soil_prep"
         app:icon="@drawable/apple_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
@@ -38,7 +37,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/crops"
-        android:text="@string/crops"
+        android:text="@string/irrigation_tab"
         app:icon="@drawable/crops_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
@@ -50,7 +49,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/livestock"
-        android:text="@string/livestock"
+        android:text="@string/crop_rotation"
         app:icon="@drawable/livestock_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
@@ -61,7 +60,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/agriculture"
-        android:text="@string/agriculture"
+        android:text="@string/pest_management"
         app:icon="@drawable/agriculture_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
