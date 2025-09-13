@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 
-
+    // Explicit Addition
 }
 
 android {
@@ -51,4 +51,6 @@ dependencies {
 
     // Explicitly Added
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
+
 }

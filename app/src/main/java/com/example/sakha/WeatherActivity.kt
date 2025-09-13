@@ -70,14 +70,15 @@ class WeatherActivity : AppCompatActivity() {
 
                 val todayKey = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
-                val dateKeys = dateGroups.keys.toList()
+                // Filter out past days
+                val dateKeys = dateGroups.keys.filter { it >= todayKey }.toList()
                 for (key in dateKeys) {
                     if (forecasts.size >= 4) break
 
                     val entries = dateGroups[key]!!
                     val noonEntry = entries.find { e ->
                         val dtTxt = e.optString("dt_txt", "")
-                        dtTxt.endsWith("12:00:00")
+                        dtTxt.contains("12:00:00") // Use contains for robustness
                     }
                     val chosen = noonEntry ?: entries[entries.size / 2] // pick a middle element
 
@@ -126,29 +127,39 @@ class WeatherActivity : AppCompatActivity() {
         val day1Btn: MaterialButton = findViewById(R.id.day1)
         val day2Btn: MaterialButton = findViewById(R.id.day2)
 
-        // clear defaults first (optional)
-        todayBtn.text = "Today"
-        tomorrowBtn.text = "Tomorrow"
-        day1Btn.text = ""
-        day2Btn.text = ""
-
         // apply forecasts safely
+        // Set text and icon only if the forecast for that day exists
         if (forecasts.isNotEmpty()) {
             if (forecasts.size > 0) {
                 todayBtn.text = "${forecasts[0].day}: ${formatTemp(forecasts[0].temperature)}"
                 todayBtn.setIconResource(getWeatherIconRes(forecasts[0].condition))
+            } else {
+                todayBtn.text = "Today"
+                todayBtn.setIconResource(0) // Clear icon
             }
+
             if (forecasts.size > 1) {
                 tomorrowBtn.text = "${forecasts[1].day}: ${formatTemp(forecasts[1].temperature)}"
                 tomorrowBtn.setIconResource(getWeatherIconRes(forecasts[1].condition))
+            } else {
+                tomorrowBtn.text = "Tomorrow"
+                tomorrowBtn.setIconResource(0)
             }
+
             if (forecasts.size > 2) {
                 day1Btn.text = "${forecasts[2].day}: ${formatTemp(forecasts[2].temperature)}"
                 day1Btn.setIconResource(getWeatherIconRes(forecasts[2].condition))
+            } else {
+                day1Btn.text = "" // Clear text
+                day1Btn.setIconResource(0)
             }
+
             if (forecasts.size > 3) {
                 day2Btn.text = "${forecasts[3].day}: ${formatTemp(forecasts[3].temperature)}"
                 day2Btn.setIconResource(getWeatherIconRes(forecasts[3].condition))
+            } else {
+                day2Btn.text = ""
+                day2Btn.setIconResource(0)
             }
         } else {
             Toast.makeText(this, "No forecast data available", Toast.LENGTH_SHORT).show()
