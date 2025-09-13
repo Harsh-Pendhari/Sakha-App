@@ -82,7 +82,7 @@
                 android:contentDescription="@string/fertilizer"/>
 
             <ImageButton
-                android:id="@+id/btn5"
+                android:id="@+id/weatherBTN"
                 style="@style/GridImageButtonStyle"
                 android:src="@drawable/weather"
                 android:contentDescription="@string/weather"/>

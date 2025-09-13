@@ -29,6 +29,7 @@
         <activity android:name=".MycropsActivity" android:exported="false"/>
         <activity android:name=".FarmingtipsActivity" android:exported="false"/>
         <activity android:name=".GovSchemesActivity" android:exported="false"/>
+        <activity android:name=".WeatherActivity" android:exported="false"/>
     </application>
 
 </manifest>

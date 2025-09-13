@@ -70,6 +70,10 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(Intent(this, FarmingtipsActivity::class.java))
         }
 
+        val weatherBTN = findViewById<ImageButton>(R.id.weatherBTN)
+        weatherBTN.setOnClickListener{
+            startActivity(Intent(this, WeatherActivity::class.java))
+        }
 
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
