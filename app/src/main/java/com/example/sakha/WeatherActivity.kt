@@ -20,8 +20,8 @@ import kotlin.collections.LinkedHashMap
 
 class WeatherActivity : AppCompatActivity() {
 
-    // Put your working API key here
     private val apiKey = "399d4ae985dd3d49a2adebc6b5f83d53"
+
     private val latitude = 19.0760
     private val longitude = 72.8777
 
@@ -35,7 +35,6 @@ class WeatherActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         fetchForecast()
     }
 
