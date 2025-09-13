@@ -61,7 +61,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/agriculture"
         android:text="@string/nextday2"
-        app:icon="@drawable/agriculture_icon"
+        app:icon="@drawable/sunny_icon"
         app:iconGravity="end"
         app:iconPadding="12dp"
         app:iconSize="24dp"
