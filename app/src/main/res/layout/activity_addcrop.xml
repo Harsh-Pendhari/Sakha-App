@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/radiant_bg"
+    android:gravity="center"
+    android:id="@+id/addCrops">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:text="@string/nocroptxt"
+        android:layout_marginHorizontal="10dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="120dp"
+        android:text="@string/addCropsbtn"
+        android:textSize="22sp"/>
+
+</LinearLayout>
