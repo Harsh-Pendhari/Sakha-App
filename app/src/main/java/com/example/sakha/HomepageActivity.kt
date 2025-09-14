@@ -77,7 +77,7 @@ class HomepageActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+                R.id.profit_tracker -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
 
                 R.id.nav_dashboard -> {
                     startActivity(Intent(this, HomepageActivity::class.java))
