@@ -55,7 +55,7 @@
     <string name="tomorrow">Tomorrow</string>
     <string name="nextday1">Overmorrow</string>
     <string name="nextday2">Day after tomorrow</string>
-    <string name="nocroptxt">No crop details available. Click \<b>'Add Crops'</b> button below</string>
+    <string name="nocroptxt">No crop details available. Click Add Crops button below</string>
     <string name="addCropsbtn">Add Crops</string>
 
 </resources>

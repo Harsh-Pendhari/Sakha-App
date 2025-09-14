@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        startActivity(Intent(this, HomepageActivity::class.java))
+        startActivity(Intent(this, AddCropActivity::class.java))
         finish()
     }
 }
