@@ -9,6 +9,7 @@
     android:id="@+id/addCrops">
 
     <TextView
+        android:id="@+id/nocropText"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:textSize="18sp"
@@ -22,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="120dp"
+        android:layout_marginHorizontal="100dp"
         android:backgroundTint="@color/btn_bg_tint"
         android:textColor="@color/white"
         android:text="@string/addCropsbtn"
