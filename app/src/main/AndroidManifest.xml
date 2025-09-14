@@ -31,6 +31,7 @@
         <activity android:name=".FarmingtipsActivity" android:exported="false"/>
         <activity android:name=".GovSchemesActivity" android:exported="false"/>
         <activity android:name=".WeatherActivity" android:exported="false"/>
+        <activity android:name=".AddCropActivity" android:exported="false"/>
 
     </application>
 

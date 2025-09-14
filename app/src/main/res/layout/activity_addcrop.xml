@@ -18,10 +18,13 @@
         android:textAlignment="center"/>
 
     <Button
+        android:id="@+id/addCropsBTN"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="120dp"
+        android:backgroundTint="@color/btn_bg_tint"
+        android:textColor="@color/white"
         android:text="@string/addCropsbtn"
         android:textSize="22sp"/>
 
