@@ -26,7 +26,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme1"
         android:text="@string/scheme1"
-        app:icon="@drawable/apple_icon"
+        app:icon="@drawable/gov_icon4"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -38,7 +38,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme2"
         android:text="@string/scheme2"
-        app:icon="@drawable/crops_icon"
+        app:icon="@drawable/gov_icon5"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -51,7 +51,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme3"
         android:text="@string/scheme3"
-        app:icon="@drawable/livestock_icon"
+        app:icon="@drawable/apple_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -63,7 +63,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme4"
         android:text="@string/scheme4"
-        app:icon="@drawable/agriculture_icon"
+        app:icon="@drawable/gov_icon1"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -75,7 +75,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme5"
         android:text="@string/scheme5"
-        app:icon="@drawable/agriculture_icon"
+        app:icon="@drawable/gov_icon3"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -87,7 +87,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme6"
         android:text="@string/scheme6"
-        app:icon="@drawable/agriculture_icon"
+        app:icon="@drawable/gov_icon2"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
