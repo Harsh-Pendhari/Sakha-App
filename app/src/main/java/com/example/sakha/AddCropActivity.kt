@@ -1,7 +1,9 @@
 package com.example.sakha
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +24,12 @@ class AddCropActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val addCropBTN = findViewById<Button>(R.id.addCropsBTN)
+
+        addCropBTN.setOnClickListener{
+            startActivity(Intent(this, AddCropDetailsActivity::class.java))
         }
     }
 }
