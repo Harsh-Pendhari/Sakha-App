@@ -60,5 +60,6 @@
     <string name="entercropname">Enter Crop Name</string>
     <string name="plantingDate">Planted on</string>
     <string name="cropType">Enter Crop Type</string>
+    <string name="addcropBTN">Add Crop Details</string>
 
 </resources>

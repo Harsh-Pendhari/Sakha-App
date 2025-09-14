@@ -11,28 +11,18 @@
     <EditText
         android:id="@+id/cropname"
         android:autofillHints="Crop Name"
-        android:text="@string/entercropname"
+        android:hint="@string/entercropname"
         android:layout_width="match_parent"
         style="@style/edit_text_presets"
         android:layout_marginBottom="0dp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <Spinner
+        android:id="@+id/cropTypeDropdown"
+        style="@style/txt_input_layer"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:id="@+id/cropType_dropdown_layout"
-        style="@style/txt_input_layer"
-        app:hintTextColor="@color/text_view_textColorHint"
-        app:boxStrokeWidth="0dp"
-        app:boxBackgroundMode="none"
-        app:hintTextAppearance="@style/CustomHintText"
-        android:hint="@string/cropType">
-
-        <AutoCompleteTextView
-            android:id="@+id/cropTypeDropdown"
-            style="@style/autocomplete_txt_view"
-            android:hint="@string/cropType"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/dateInput"
@@ -42,15 +32,24 @@
         android:focusable="false"
         android:inputType="date"
         android:textColorHint="@color/text_view_textColorHint"
+        android:layout_marginBottom="0dp"
         android:drawableStart="@drawable/ic_calendar"/>
-
 
     <Spinner
         android:id="@+id/cropStatusDropdown"
+        style="@style/txt_input_layer"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        style="@style/txt_input_layer"
         android:textAlignment="center" />
 
+    <Button
+        android:id="@+id/AddCropDetailsBTN"
+        android:layout_width="match_parent"
+        style="@style/button_view_presets"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/addCrop"/>
+    
 </LinearLayout>
