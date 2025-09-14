@@ -32,6 +32,7 @@
         <activity android:name=".GovSchemesActivity" android:exported="false"/>
         <activity android:name=".WeatherActivity" android:exported="false"/>
         <activity android:name=".AddCropActivity" android:exported="false"/>
+        <activity android:name=".AddCropDetailsActivity" android:exported="false"/>
 
     </application>
 

@@ -47,7 +47,7 @@ class UserdetailsformActivity : AppCompatActivity() {
 
         val txtFieldVillage = findViewById<TextInputLayout>(R.id.village_dropdown_layout)
         val dropdownVillage = findViewById<AutoCompleteTextView>(R.id.villageDropdown)
-//
+
 //        val txtFieldIrrigation = findViewById<TextInputLayout>(R.id.irrigation_dropdown_layout)
 //        val irrigationDropdown = findViewById<AutoCompleteTextView>(R.id.irrigationDropdown)
 

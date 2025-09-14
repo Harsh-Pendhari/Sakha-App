@@ -10,18 +10,29 @@
 
     <EditText
         android:id="@+id/cropname"
+        android:autofillHints="Crop Name"
         android:text="@string/entercropname"
         android:layout_width="match_parent"
         style="@style/edit_text_presets"
         android:layout_marginBottom="0dp"/>
 
-    <Spinner
-        android:id="@+id/cropTypeDropdown"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:id="@+id/cropType_dropdown_layout"
         style="@style/txt_input_layer"
-        android:textAlignment="center" />
+        app:hintTextColor="@color/text_view_textColorHint"
+        app:boxStrokeWidth="0dp"
+        app:boxBackgroundMode="none"
+        app:hintTextAppearance="@style/CustomHintText"
+        android:hint="@string/cropType">
+
+        <AutoCompleteTextView
+            android:id="@+id/cropTypeDropdown"
+            style="@style/autocomplete_txt_view"
+            android:hint="@string/cropType"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/dateInput"
@@ -30,7 +41,8 @@
         android:hint="@string/plantingDate"
         android:focusable="false"
         android:inputType="date"
-        android:drawableEnd="@android:drawable/ic_menu_today"/>
+        android:textColorHint="@color/text_view_textColorHint"
+        android:drawableStart="@drawable/ic_calendar"/>
 
 
     <Spinner
