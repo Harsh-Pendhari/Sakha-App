@@ -2,6 +2,7 @@ package com.example.sakha
 
 data class WeatherInfo(
     val day: String,
-    val temperature: Double,
+    val minTemperature: Double,
+    val maxTemperature: Double,
     val condition: String
 )

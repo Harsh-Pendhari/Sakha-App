@@ -17,6 +17,8 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.LinkedHashMap
+import kotlin.math.max
+import kotlin.math.min
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -44,7 +46,7 @@ class WeatherActivity : AppCompatActivity() {
                 val url =
                     "https://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&units=metric&appid=$apiKey"
                 val response = URL(url).readText()
-                // Log.d("WEATHER_API", response)debug
+                // Log.d("WEATHER_API", response) debug
 
                 val json = JSONObject(response)
                 val list = json.getJSONArray("list")
@@ -67,27 +69,34 @@ class WeatherActivity : AppCompatActivity() {
                 }
 
                 val forecasts = mutableListOf<WeatherInfo>()
-
                 val todayKey = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
-                // Filter out past days
                 val dateKeys = dateGroups.keys.filter { it >= todayKey }.toList()
                 for (key in dateKeys) {
                     if (forecasts.size >= 4) break
 
                     val entries = dateGroups[key]!!
+                    var minTemp = Double.MAX_VALUE
+                    var maxTemp = Double.MIN_VALUE
+                    var condition = "Unknown"
+
+                    // Iterate through all 3-hour entries for the day to find the min, max, and the condition
+                    for (entry in entries) {
+                        val main = entry.getJSONObject("main")
+                        val temp = main.getDouble("temp")
+                        minTemp = min(minTemp, temp)
+                        maxTemp = max(maxTemp, temp)
+                    }
+
+                    // Find the condition for the day, for example, from the noon entry
                     val noonEntry = entries.find { e ->
                         val dtTxt = e.optString("dt_txt", "")
-                        dtTxt.contains("12:00:00") // Use contains for robustness
+                        dtTxt.contains("12:00:00")
                     }
                     val chosen = noonEntry ?: entries[entries.size / 2] // pick a middle element
-
-                    val main = chosen.getJSONObject("main")
-                    val temp = main.getDouble("temp")
                     val weatherArr = chosen.getJSONArray("weather")
-                    val condition = weatherArr.getJSONObject(0).getString("main")
+                    condition = weatherArr.getJSONObject(0).getString("main")
 
-                    // Label: Today / Tomorrow / Weekday name
                     val label = when {
                         key == todayKey -> "Today"
                         isTomorrowKey(key) -> "Tomorrow"
@@ -98,7 +107,7 @@ class WeatherActivity : AppCompatActivity() {
                         }
                     }
 
-                    forecasts.add(WeatherInfo(label, temp, condition))
+                    forecasts.add(WeatherInfo(label, minTemp, maxTemp, condition))
                 }
 
                 withContext(Dispatchers.Main) {
@@ -128,10 +137,9 @@ class WeatherActivity : AppCompatActivity() {
         val day2Btn: MaterialButton = findViewById(R.id.day2)
 
         // apply forecasts safely
-        // Set text and icon only if the forecast for that day exists
         if (forecasts.isNotEmpty()) {
             if (forecasts.size > 0) {
-                todayBtn.text = "${forecasts[0].day}: ${formatTemp(forecasts[0].temperature)}"
+                todayBtn.text = "${forecasts[0].day}: ${formatTemp(forecasts[0].minTemperature, forecasts[0].maxTemperature)}"
                 todayBtn.setIconResource(getWeatherIconRes(forecasts[0].condition))
             } else {
                 todayBtn.text = "Today"
@@ -139,7 +147,7 @@ class WeatherActivity : AppCompatActivity() {
             }
 
             if (forecasts.size > 1) {
-                tomorrowBtn.text = "${forecasts[1].day}: ${formatTemp(forecasts[1].temperature)}"
+                tomorrowBtn.text = "${forecasts[1].day}: ${formatTemp(forecasts[1].minTemperature, forecasts[1].maxTemperature)}"
                 tomorrowBtn.setIconResource(getWeatherIconRes(forecasts[1].condition))
             } else {
                 tomorrowBtn.text = "Tomorrow"
@@ -147,7 +155,7 @@ class WeatherActivity : AppCompatActivity() {
             }
 
             if (forecasts.size > 2) {
-                day1Btn.text = "${forecasts[2].day}: ${formatTemp(forecasts[2].temperature)}"
+                day1Btn.text = "${forecasts[2].day}: ${formatTemp(forecasts[2].minTemperature, forecasts[2].maxTemperature)}"
                 day1Btn.setIconResource(getWeatherIconRes(forecasts[2].condition))
             } else {
                 day1Btn.text = "" // Clear text
@@ -155,7 +163,7 @@ class WeatherActivity : AppCompatActivity() {
             }
 
             if (forecasts.size > 3) {
-                day2Btn.text = "${forecasts[3].day}: ${formatTemp(forecasts[3].temperature)}"
+                day2Btn.text = "${forecasts[3].day}: ${formatTemp(forecasts[3].minTemperature, forecasts[3].maxTemperature)}"
                 day2Btn.setIconResource(getWeatherIconRes(forecasts[3].condition))
             } else {
                 day2Btn.text = ""
@@ -166,8 +174,8 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
-    private fun formatTemp(t: Double): String {
-        return String.format(Locale.getDefault(), "%.0f\u00B0C", t)
+    private fun formatTemp(minTemp: Double, maxTemp: Double): String {
+        return String.format(Locale.getDefault(), "%.0f\u00B0C / %.0f\u00B0C", minTemp, maxTemp)
     }
 
     private fun getWeatherIconRes(condition: String): Int {
