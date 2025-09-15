@@ -13,10 +13,11 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:layout_marginTop="5dp"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:contentDescription="@string/irrigationMethods"
-            android:src=""/>
+            android:src="@drawable/drip_irrigation_icon"/>
 
         <LinearLayout
             android:layout_width="match_parent"
