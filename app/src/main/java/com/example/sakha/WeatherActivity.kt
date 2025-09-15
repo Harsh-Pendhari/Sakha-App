@@ -24,8 +24,8 @@ class WeatherActivity : AppCompatActivity() {
 
     private val apiKey = "399d4ae985dd3d49a2adebc6b5f83d53"
 
-    private val latitude = 19.0760
-    private val longitude = 72.8777
+    private val latitude = 18.98575
+    private val longitude = 73.13443
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
