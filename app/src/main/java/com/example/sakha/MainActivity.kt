@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        startActivity(Intent(this, AddCropActivity::class.java))
+        startActivity(Intent(this, UserdetailsformActivity::class.java))
         finish()
     }
 }
