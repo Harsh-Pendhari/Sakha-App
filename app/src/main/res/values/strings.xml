@@ -61,5 +61,6 @@
     <string name="plantingDate">Planted on</string>
     <string name="cropType">Enter Crop Type</string>
     <string name="addcropBTN">Add Crop Details</string>
+    <string name="irrigationMethods">Irrigation Methods</string>
 
 </resources>
