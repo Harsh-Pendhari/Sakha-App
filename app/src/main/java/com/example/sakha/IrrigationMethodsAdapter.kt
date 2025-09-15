@@ -3,32 +3,31 @@ package com.example.sakha  // change to your package name if different
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class IrrigationMethodsAdapter(private val cropList: List<Crop>) :
-    RecyclerView.Adapter<CropAdapter.CropViewHolder>() {
+class IrrigationMethodsAdapter(private val irrigationList: List<IrrigationMethods>) :
+    RecyclerView.Adapter<IrrigationMethodsAdapter.IrrigationViewHolder>() {
 
-    class CropViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cropName: TextView = itemView.findViewById(R.id.cropName)
-        val cropType: TextView = itemView.findViewById(R.id.cropType)
-        val cropPlanted: TextView = itemView.findViewById(R.id.cropPlanted)
-        val cropStatus: TextView = itemView.findViewById(R.id.cropStatus)
+    class IrrigationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val irrigationIcon: ImageView = itemView.findViewById(R.id.irrigationIcon)
+        val irrigationName: TextView = itemView.findViewById(R.id.IrrigationName)
+        val irrigationDescription: TextView = itemView.findViewById(R.id.IrrigationDescription)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CropViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IrrigationViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.crop_item, parent, false)
-        return CropViewHolder(view)
+            .inflate(R.layout.irrigation_methods_items, parent, false)
+        return IrrigationViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CropViewHolder, position: Int) {
-        val crop = cropList[position]
-        holder.cropName.text = crop.name
-        holder.cropType.text = "Type: ${crop.type}"
-        holder.cropPlanted.text = "Planted: ${crop.planted}"
-        holder.cropStatus.text = "Status: ${crop.status}"
+    override fun onBindViewHolder(holder: IrrigationViewHolder, position: Int) {
+        val method = irrigationList[position]
+        holder.irrigationIcon.setImageResource(method.icon)
+        holder.irrigationName.text = method.methodName
+        holder.irrigationDescription.text = method.description
     }
 
-    override fun getItemCount(): Int = cropList.size
+    override fun getItemCount(): Int = irrigationList.size
 }
