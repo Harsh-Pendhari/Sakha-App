@@ -64,7 +64,7 @@
                 android:contentDescription="@string/crop"/>
 
             <ImageButton
-                android:id="@+id/btn2"
+                android:id="@+id/irrigationMethods_btn"
                 style="@style/GridImageButtonStyle"
                 android:src="@drawable/irrigation"
                 android:contentDescription="@string/irrigation"/>

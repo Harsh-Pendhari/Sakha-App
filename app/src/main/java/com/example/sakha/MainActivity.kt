@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        startActivity(Intent(this, HomepageActivity::class.java))
+        startActivity(Intent(this, IrrigationMethodsActivity::class.java))
         finish()
     }
 }

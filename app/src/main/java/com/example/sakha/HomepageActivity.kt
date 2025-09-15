@@ -75,6 +75,11 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(Intent(this, WeatherActivity::class.java))
         }
 
+        val irrigationMethodsBTN = findViewById<ImageButton>(R.id.irrigationMethods_btn)
+        irrigationMethodsBTN.setOnClickListener{
+            startActivity(Intent(this, IrrigationMethodsActivity::class.java))
+        }
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.profit_tracker -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
