@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/radiant_bg"
-    android:gravity="center"
-    android:id="@+id/IrrigationMethods">
+    android:background="@drawable/radiant_bg">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="@string/irrigationMethods"
-        android:textSize="28sp"
-        android:textColor="@color/darkGreen_text"
         android:textAlignment="center"
-        android:textStyle="bold"/>
+        android:textColor="@color/darkGreen_text"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="65dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="100dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
