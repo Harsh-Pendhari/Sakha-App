@@ -27,7 +27,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fruits_and_vegetables"
         android:text="@string/soil_prep"
-        app:icon="@drawable/apple_icon"
+        app:icon="@drawable/soil_prep_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -38,7 +38,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/crops"
         android:text="@string/irrigation_tab"
-        app:icon="@drawable/crops_icon"
+        app:icon="@drawable/irrigation_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -50,7 +50,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/livestock"
         android:text="@string/crop_rotation"
-        app:icon="@drawable/livestock_icon"
+        app:icon="@drawable/crop_rotation_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
@@ -61,7 +61,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/agriculture"
         android:text="@string/pest_management"
-        app:icon="@drawable/agriculture_icon"
+        app:icon="@drawable/pest_management_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
