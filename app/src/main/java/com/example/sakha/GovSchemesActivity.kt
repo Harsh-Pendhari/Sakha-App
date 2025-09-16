@@ -22,27 +22,27 @@ class GovSchemesActivity : AppCompatActivity() {
 
         val iPMKisanMannDhanYojana = findViewById<Button>(R.id.scheme1)
         val iPMKisanMannDhanYojanaURL = "https://maandhan.in/"
-        val scheme1 = R.string.scheme1
+        val scheme1 = getString(R.string.scheme1)
 
         val iAgroInfraFund = findViewById<Button>(R.id.scheme2)
         val iAgroInfraFundURL = "https://agriinfra.dac.gov.in/Home/EligibleProjects"
-        val scheme2 = R.string.scheme2
+        val scheme2 = getString(R.string.scheme2)
 
         val iSoilHealthCard = findViewById<Button>(R.id.scheme3)
         val iSoilHealthCardURL = "https://www.soilhealth.dac.gov.in/admin/"
-        val scheme3 = R.string.scheme3
+        val scheme3 = getString(R.string.scheme3)
 
         val iPMKisanSammanNidhi = findViewById<Button>(R.id.scheme4)
         val iPMKisanSammanNidhiURL = "https://pmkisan.gov.in/homenew.aspx"
-        val scheme4 = R.string.scheme4
+        val scheme4 = getString(R.string.scheme4)
 
         val iPMKisan = findViewById<Button>(R.id.scheme5)
         val iPMKisanURL = "https://www.pmkisan.gov.in/KnowYour_Registration.aspx"
-        val scheme5 = R.string.scheme5
+        val scheme5 = getString(R.string.scheme5)
 
         val iPMFasalBimaYojana = findViewById<Button>(R.id.scheme6)
         val iPMFasalBimaYojanaURL = "https://pmfby.gov.in/"
-        val scheme6 = R.string.scheme6
+        val scheme6 = getString(R.string.scheme6)
 
 
         iPMKisanMannDhanYojana.setOnClickListener{
