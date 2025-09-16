@@ -2,23 +2,12 @@ package com.example.sakha
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputLayout
-import org.json.JSONObject
+
 
 class FarmingtipsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,21 +21,47 @@ class FarmingtipsActivity : AppCompatActivity() {
         }
 
         val soilPrepBTN = findViewById<Button>(R.id.soilPrepBTN)
+        val soilPrepLink = "https://ncert.nic.in/vocational/pdf/iepf102.pdf"
         val soilPrep = getString(R.string.soil_prep)
-        val soilPrepLink = getString(R.string.soil_prep)
 
         val irrigationBTN = findViewById<Button>(R.id.irrigationBTN)
+        val irrigationLink = "https://www.fibl.org/fileadmin/documents/shop/2522-irrigation.pdf"
         val irrigation = getString(R.string.irrigation)
-        val irrigationLink = getString(R.string.irrigation)
 
         val cropRotationBTN = findViewById<Button>(R.id.cropRotationBTN)
+        val cropRotationLink = "https://www.sare.org/wp-content/uploads/Crop-Rotation-on-Organic-Farms.pdf"
         val cropRotation = getString(R.string.crop_rotation)
-        val cropRotationLink = getString(R.string.crop_rotation)
 
         val pestManagementBTN = findViewById<Button>(R.id.pestManagementBTN)
+        val pestManagementLink = "https://ncert.nic.in/vocational/pdf/kefc106.pdf"
         val pestManagement = getString(R.string.pest_management)
-        val pestManagementLink = getString(R.string.pest_management)
 
+        soilPrepBTN.setOnClickListener {
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", soilPrepLink)
+            intent.putExtra("TITLE", soilPrep)
+            startActivity(intent)
+        }
 
+        irrigationBTN.setOnClickListener {
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", irrigationLink)
+            intent.putExtra("TITLE", irrigation)
+            startActivity(intent)
+        }
+
+        cropRotationBTN.setOnClickListener {
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", cropRotationLink)
+            intent.putExtra("TITLE", cropRotation)
+            startActivity(intent)
+        }
+
+        pestManagementBTN.setOnClickListener {
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", pestManagementLink)
+            intent.putExtra("TITLE", pestManagement)
+            startActivity(intent)
+        }
     }
 }
