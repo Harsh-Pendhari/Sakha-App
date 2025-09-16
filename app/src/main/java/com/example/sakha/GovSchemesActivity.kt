@@ -22,45 +22,69 @@ class GovSchemesActivity : AppCompatActivity() {
 
         val iPMKisanMannDhanYojana = findViewById<Button>(R.id.scheme1)
         val iPMKisanMannDhanYojanaURL = "https://maandhan.in/"
+        val scheme1 = R.string.scheme1
 
         val iAgroInfraFund = findViewById<Button>(R.id.scheme2)
         val iAgroInfraFundURL = "https://agriinfra.dac.gov.in/Home/EligibleProjects"
+        val scheme2 = R.string.scheme2
 
         val iSoilHealthCard = findViewById<Button>(R.id.scheme3)
         val iSoilHealthCardURL = "https://www.soilhealth.dac.gov.in/admin/"
+        val scheme3 = R.string.scheme3
 
         val iPMKisanSammanNidhi = findViewById<Button>(R.id.scheme4)
         val iPMKisanSammanNidhiURL = "https://pmkisan.gov.in/homenew.aspx"
+        val scheme4 = R.string.scheme4
 
         val iPMKisan = findViewById<Button>(R.id.scheme5)
         val iPMKisanURL = "https://www.pmkisan.gov.in/KnowYour_Registration.aspx"
+        val scheme5 = R.string.scheme5
 
         val iPMFasalBimaYojana = findViewById<Button>(R.id.scheme6)
         val iPMFasalBimaYojanaURL = "https://pmfby.gov.in/"
+        val scheme6 = R.string.scheme6
 
 
         iPMKisanMannDhanYojana.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(iPMKisanMannDhanYojanaURL)))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", iPMKisanMannDhanYojanaURL)
+            intent.putExtra("TITLE", scheme1)
+            startActivity(intent)
         }
 
         iAgroInfraFund.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(iAgroInfraFundURL)))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", iAgroInfraFundURL)
+            intent.putExtra("TITLE", scheme2)
+            startActivity(intent)
         }
 
         iSoilHealthCard.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(iSoilHealthCardURL)))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", iSoilHealthCardURL)
+            intent.putExtra("TITLE", scheme3)
+            startActivity(intent)
         }
 
         iPMKisanSammanNidhi.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(iPMKisanSammanNidhiURL)))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", iPMKisanSammanNidhiURL)
+            intent.putExtra("TITLE", scheme4)
+            startActivity(intent)
         }
 
         iPMKisan.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(iPMKisanURL)))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", iPMKisanURL)
+            intent.putExtra("TITLE", scheme5)
+            startActivity(intent)
         }
 
         iPMFasalBimaYojana.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(iPMFasalBimaYojanaURL)))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", iPMFasalBimaYojanaURL)
+            intent.putExtra("TITLE", scheme6)
+            startActivity(intent)
         }
 
     }
