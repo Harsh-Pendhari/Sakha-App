@@ -1,6 +1,7 @@
 package com.example.sakha
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -26,6 +27,7 @@ class FarmingtipsActivity : AppCompatActivity() {
 
         val irrigationBTN = findViewById<Button>(R.id.irrigationBTN)
         val irrigationLink = "https://www.fibl.org/fileadmin/documents/shop/2522-irrigation.pdf"
+        webView.loadUrl("https://docs.google.com/gview?embedded=true&url=$irrigationLink")
         val irrigation = getString(R.string.irrigation)
 
         val cropRotationBTN = findViewById<Button>(R.id.cropRotationBTN)
@@ -44,9 +46,9 @@ class FarmingtipsActivity : AppCompatActivity() {
         }
 
         irrigationBTN.setOnClickListener {
-            val intent = Intent(this, WebViewActivity::class.java)
-            intent.putExtra("URL", irrigationLink)
-            intent.putExtra("TITLE", irrigation)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setDataAndType(Uri.parse(irrigationLink), "application/pdf")
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
         }
 
