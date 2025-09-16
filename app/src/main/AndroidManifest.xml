@@ -36,6 +36,8 @@
         <activity android:name=".IrrigationMethodsActivity" android:exported="false"/>
         <activity android:name=".WebViewActivity" android:exported="false"/>
         <activity android:name=".PesticidesActivity" android:exported="false"/>
+        <activity android:name=".ExpenseTrackerActivity" android:exported="false"/>
+        <activity android:name=".MarketPriceActivity" android:exported="false"/>
 
     </application>
 

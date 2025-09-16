@@ -85,9 +85,16 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(Intent(this, PesticidesActivity::class.java))
         }
 
+        val marketPriceBTN = findViewById<ImageButton>(R.id.mktPrice_btn)
+        marketPriceBTN.setOnClickListener {
+            startActivity(Intent(this, MarketPriceActivity::class.java))
+        }
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.profit_tracker -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+                R.id.profit_tracker -> {
+                    startActivity(Intent(this, ExpenseTrackerActivity::class.java))
+                }
 
                 R.id.nav_dashboard -> {
                     startActivity(Intent(this, HomepageActivity::class.java))

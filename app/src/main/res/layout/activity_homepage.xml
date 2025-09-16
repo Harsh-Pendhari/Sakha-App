@@ -88,7 +88,7 @@
                 android:contentDescription="@string/weather"/>
 
             <ImageButton
-                android:id="@+id/btn6"
+                android:id="@+id/mktPrice_btn"
                 style="@style/GridImageButtonStyle"
                 android:src="@drawable/market"
                 android:contentDescription="@string/Market"/>

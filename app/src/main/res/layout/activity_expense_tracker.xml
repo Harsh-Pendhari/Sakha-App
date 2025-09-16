@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Expense Tracker"
-        android:textSize="28sp"
+        android:textSize="38sp"
         android:textStyle="bold"
         android:textColor="@color/darkGreen_text"
         android:gravity="center"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="40dp"/>
 
     <EditText
         android:id="@+id/etCost"
@@ -27,7 +27,7 @@
         android:hint="@string/productionCost"
         android:inputType="numberDecimal"
         android:padding="12dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="0dp"/>
 
     <EditText
         android:id="@+id/etRevenue"

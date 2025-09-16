@@ -27,6 +27,8 @@ class ExpenseTrackerActivity : AppCompatActivity() {
         val btnCalculate = findViewById<Button>(R.id.btnCalculate)
         val tvResult = findViewById<TextView>(R.id.tvResult)
 
+        tvResult.setText("")
+
         btnCalculate.setOnClickListener {
             val costText = etCost.text.toString()
             val revenueText = etRevenue.text.toString()
