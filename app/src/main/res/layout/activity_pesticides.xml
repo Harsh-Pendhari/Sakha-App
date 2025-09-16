@@ -23,14 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
-        android:id="@+id/insecticides_btn">
+        app:cardElevation="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/FarmtipsBg">
+            android:background="@color/FarmtipsBg"
+            android:id="@+id/insecticides_btn">
 
             <ImageView
                 android:id="@+id/irrigationIcon"
