@@ -31,7 +31,7 @@ class MarketActivity : AppCompatActivity() {
         }
 
         val cropBTN = findViewById<Button>(R.id.crops)
-        val cropBTNLink = "https://go4fresh.com/"
+        val cropBTNLink = "https://agrimp.com/"
         val croptTitle = getString(R.string.crops)
 
         cropBTN.setOnClickListener {
@@ -42,7 +42,7 @@ class MarketActivity : AppCompatActivity() {
         }
 
         val liveStockBTN = findViewById<Button>(R.id.livestock)
-        val liveStockBTNLink = "https://go4fresh.com/"
+        val liveStockBTNLink = "https://www.pashushala.com/"
         val liveStockTitle = getString(R.string.livestock)
 
         liveStockBTN.setOnClickListener {
@@ -53,7 +53,7 @@ class MarketActivity : AppCompatActivity() {
         }
 
         val machineryBTN = findViewById<Button>(R.id.machinery)
-        val machineryBTNLink = "https://go4fresh.com/"
+        val machineryBTNLink = "https://www.tractorforeveryone.com/"
         val machineryTitle = getString(R.string.machinery)
 
         machineryBTN.setOnClickListener {
