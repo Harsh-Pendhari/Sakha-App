@@ -30,7 +30,7 @@ class PesticidesActivity : AppCompatActivity() {
         recyclerView.adapter = PesticidesAdapter(pesticide){ method ->
             val intent = Intent(this, WebViewActivity::class.java)
             intent.putExtra("URL", method.link)
-            intent.putExtra("TITLE", method.methodName)
+            intent.putExtra("TITLE", method.pesticideName)
             startActivity(intent)
         }
     }

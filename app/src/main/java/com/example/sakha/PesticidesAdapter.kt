@@ -12,27 +12,27 @@ class PesticidesAdapter(private val pesticidesList: List<Pesticides>,
     RecyclerView.Adapter<PesticidesAdapter.PesticidesViewHolder>() {
 
     class PesticidesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val irrigationIcon: ImageView = itemView.findViewById(R.id.irrigationIcon)
-        val irrigationName: TextView = itemView.findViewById(R.id.IrrigationName)
-        val irrigationDescription: TextView = itemView.findViewById(R.id.IrrigationDescription)
+        val pesticideIcon: ImageView = itemView.findViewById(R.id.pesticideIcon)
+        val pesticideName: TextView = itemView.findViewById(R.id.PesticideName)
+        val pesticideDescription: TextView = itemView.findViewById(R.id.PesticideDescription)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PesticidesViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.irrigation_methods_items, parent, false)
+            .inflate(R.layout.pesticides_items, parent, false)
         return PesticidesViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PesticidesViewHolder, position: Int) {
         val method = pesticidesList[position]
-        holder.irrigationIcon.setImageResource(method.icon)
-        holder.irrigationName.text = method.methodName
-        holder.irrigationDescription.text = method.description
+        holder.pesticideIcon.setImageResource(method.icon)
+        holder.pesticideName.text = method.pesticideName
+        holder.pesticideDescription.text = method.description
 
         holder.itemView.setOnClickListener{
             onItemClick(method)
         }
     }
 
-    override fun getItemCount(): Int = irrigationList.size
+    override fun getItemCount(): Int = pesticidesList.size
 }
