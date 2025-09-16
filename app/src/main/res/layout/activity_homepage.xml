@@ -76,7 +76,7 @@
                 android:contentDescription="@string/basket"/>
 
             <ImageButton
-                android:id="@+id/btn4"
+                android:id="@+id/pest_btn"
                 style="@style/GridImageButtonStyle"
                 android:src="@drawable/pest"
                 android:contentDescription="@string/fertilizer"/>
