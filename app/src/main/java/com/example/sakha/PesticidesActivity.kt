@@ -23,7 +23,10 @@ class PesticidesActivity : AppCompatActivity() {
         val insecticideBTNLink = "https://mankindag.com/product/insecticide/"
 
         insecticideBTN.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", insecticideBTNLink)
+            intent.putExtra("TITLE", "Insecticides")
+            startActivity(intent)
         }
     }
 }
