@@ -34,6 +34,7 @@
         <activity android:name=".AddCropActivity" android:exported="false"/>
         <activity android:name=".AddCropDetailsActivity" android:exported="false"/>
         <activity android:name=".IrrigationMethodsActivity" android:exported="false"/>
+        <activity android:name=".WebViewActivity" android:exported="false"/>
 
     </application>
 
