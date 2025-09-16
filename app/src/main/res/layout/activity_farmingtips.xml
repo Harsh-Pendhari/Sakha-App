@@ -25,7 +25,7 @@
         android:src="@drawable/farmingtipspfp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/fruits_and_vegetables"
+        android:id="@+id/soilPrepBTN"
         android:text="@string/soil_prep"
         app:icon="@drawable/soil_prep_icon"
         app:iconGravity="textStart"
@@ -36,7 +36,7 @@
         app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/crops"
+        android:id="@+id/irrigationBTN"
         android:text="@string/irrigation_tab"
         app:icon="@drawable/irrigation_icon"
         app:iconGravity="textStart"
@@ -48,7 +48,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/livestock"
+        android:id="@+id/cropRotationBTN"
         android:text="@string/crop_rotation"
         app:icon="@drawable/crop_rotation_icon"
         app:iconGravity="textStart"
@@ -59,7 +59,7 @@
         app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/agriculture"
+        android:id="@+id/pestManagementBTN"
         android:text="@string/pest_management"
         app:icon="@drawable/pest_management_icon"
         app:iconGravity="textStart"
