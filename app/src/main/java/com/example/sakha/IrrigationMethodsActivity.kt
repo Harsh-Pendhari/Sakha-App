@@ -33,8 +33,9 @@ class IrrigationMethodsActivity : AppCompatActivity() {
         )
 
         recyclerView.adapter = IrrigationMethodsAdapter(irrigationMethods){ method ->
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(method.link)
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("URL", method.link)
+            intent.putExtra("TITLE", method.methodName)
             startActivity(intent)
         }
     }
