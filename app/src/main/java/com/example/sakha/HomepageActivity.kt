@@ -80,6 +80,11 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(Intent(this, IrrigationMethodsActivity::class.java))
         }
 
+        val pestBTN = findViewById<ImageButton>(R.id.pest_btn)
+        pestBTN.setOnClickListener{
+            startActivity(Intent(this, PesticidesActivity::class.java))
+        }
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.profit_tracker -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
