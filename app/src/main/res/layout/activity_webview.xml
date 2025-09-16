@@ -9,7 +9,7 @@
         android:id="@+id/webviewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/radiant_bg"
+        android:background="@color/darkGreen_text"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:padding="12dp"
