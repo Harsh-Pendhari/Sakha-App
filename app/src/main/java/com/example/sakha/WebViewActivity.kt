@@ -23,7 +23,6 @@ class WebViewActivity : AppCompatActivity() {
             insets
         }
 
-
         val titleText: TextView = findViewById(R.id.webviewTitle)
         val webView: WebView = findViewById(R.id.mainWebView)
 
@@ -37,8 +36,16 @@ class WebViewActivity : AppCompatActivity() {
         // Configure WebView
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
+
         if (url != null) {
-            webView.loadUrl(url)
+            if (url.endsWith(".pdf")) {
+                // Use Google Docs Viewer for PDFs
+                val pdfViewerUrl = "https://docs.google.com/gview?embedded=true&url=$url"
+                webView.loadUrl(pdfViewerUrl)
+            } else {
+                // Normal websites
+                webView.loadUrl(url)
+            }
         }
     }
 
