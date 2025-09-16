@@ -60,8 +60,8 @@
         app:strokeWidth="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/agriculture"
-        android:text="@string/agriculture"
+        android:id="@+id/machinery"
+        android:text="@string/machinery"
         app:icon="@drawable/agriculture_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"

@@ -62,5 +62,6 @@
     <string name="addcropBTN">Add Crop Details</string>
     <string name="irrigationMethods">Irrigation Methods</string>
     <string name="pesticides">Pesticides</string>
+    <string name="machinery">Machinery</string>
 
 </resources>
