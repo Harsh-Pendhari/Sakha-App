@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -29,5 +30,23 @@ class FarmingtipsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val soilPrepBTN = findViewById<Button>(R.id.soilPrepBTN)
+        val soilPrep = getString(R.string.soil_prep)
+        val soilPrepLink = getString(R.string.soil_prep)
+
+        val irrigationBTN = findViewById<Button>(R.id.irrigationBTN)
+        val irrigation = getString(R.string.irrigation)
+        val irrigationLink = getString(R.string.irrigation)
+
+        val cropRotationBTN = findViewById<Button>(R.id.cropRotationBTN)
+        val cropRotation = getString(R.string.crop_rotation)
+        val cropRotationLink = getString(R.string.crop_rotation)
+
+        val pestManagementBTN = findViewById<Button>(R.id.pestManagementBTN)
+        val pestManagement = getString(R.string.pest_management)
+        val pestManagementLink = getString(R.string.pest_management)
+
+
     }
 }
