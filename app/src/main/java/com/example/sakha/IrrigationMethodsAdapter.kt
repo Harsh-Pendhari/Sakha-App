@@ -1,4 +1,4 @@
-package com.example.sakha  // change to your package name if different
+package com.example.sakha
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class IrrigationMethodsAdapter(private val irrigationList: List<IrrigationMethods>) :
+class IrrigationMethodsAdapter(private val irrigationList: List<IrrigationMethods>,
+                               private val onItemClick: (IrrigationMethods) -> Unit) :
     RecyclerView.Adapter<IrrigationMethodsAdapter.IrrigationViewHolder>() {
 
     class IrrigationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,6 +28,10 @@ class IrrigationMethodsAdapter(private val irrigationList: List<IrrigationMethod
         holder.irrigationIcon.setImageResource(method.icon)
         holder.irrigationName.text = method.methodName
         holder.irrigationDescription.text = method.description
+
+        holder.itemView.setOnClickListener{
+            onItemClick(method)
+        }
     }
 
     override fun getItemCount(): Int = irrigationList.size
