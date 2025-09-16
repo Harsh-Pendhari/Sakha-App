@@ -51,7 +51,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scheme3"
         android:text="@string/scheme3"
-        app:icon="@drawable/apple_icon"
+        app:icon="@drawable/soil_prep_icon"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
         app:iconSize="24dp"
