@@ -63,5 +63,8 @@
     <string name="irrigationMethods">Irrigation Methods</string>
     <string name="pesticides">Pesticides</string>
     <string name="machinery">Machinery</string>
+    <string name="productionCost">Enter Total Production Cost (₹)</string>
+    <string name="sellingRev">Enter Total Selling Revenue (₹)</string>
+    <string name="pl">Calculate Profit / Loss</string>
 
 </resources>
