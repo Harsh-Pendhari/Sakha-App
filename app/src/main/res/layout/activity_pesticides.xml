@@ -16,7 +16,7 @@
         android:textColor="@color/darkGreen_text"
         android:text="@string/pesticides"
         android:textSize="28sp"
-        android:layout_marginBottom="25dp"/>
+        android:layout_marginVertical="55dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -28,44 +28,132 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/FarmtipsBg"
-            android:id="@+id/insecticides_btn">
-
-            <ImageView
-                android:id="@+id/irrigationIcon"
-                android:padding="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@color/FarmtipsBg"
-                android:contentDescription="@string/irrigationMethods"
-                android:src="@drawable/drip_irrigation_icon"/>
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:background="@color/FarmtipsBg"
-                android:padding="16dp">
+                android:layout_marginBottom="15dp"
+                android:id="@+id/insecticides_btn">
 
-                <TextView
-                    android:id="@+id/IrrigationName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Drip Irrigation"
-                    android:textColor="@color/darkGreen_text"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                <ImageView
+                    android:padding="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@color/FarmtipsBg"
+                    android:src="@drawable/drip_irrigation_icon"/>
 
-                <TextView
-                    android:id="@+id/IrrigationDescription"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Type: delivers water directly into the roots, saves water, suitable for vegetables and orchards"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/gray"/>
+                    android:orientation="vertical"
+                    android:background="@color/FarmtipsBg"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Insecticides"
+                        android:textColor="@color/darkGreen_text"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Controls Insects"
+                        android:textSize="16sp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/gray"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/FarmtipsBg"
+                android:id="@+id/herbicide_btn"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:padding="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@color/FarmtipsBg"
+                    android:src="@drawable/drip_irrigation_icon"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/FarmtipsBg"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Herbicides"
+                        android:textColor="@color/darkGreen_text"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kills Weeds"
+                        android:textSize="16sp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/gray"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/FarmtipsBg"
+                android:id="@+id/fungicide_btn">
+
+                <ImageView
+                    android:padding="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@color/FarmtipsBg"
+                    android:contentDescription="fungicide"
+                    android:src="@drawable/drip_irrigation_icon"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/FarmtipsBg"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fungicides"
+                        android:textColor="@color/darkGreen_text"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/IrrigationDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Controls Fungi"
+                        android:textSize="16sp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/gray"/>
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
