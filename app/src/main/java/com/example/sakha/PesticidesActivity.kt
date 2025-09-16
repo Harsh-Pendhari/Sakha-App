@@ -18,15 +18,5 @@ class PesticidesActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        val insecticideBTN = findViewById<LinearLayout>(R.id.insecticides_btn)
-        val insecticideBTNLink = "https://mankindag.com/product/insecticide/"
-
-        insecticideBTN.setOnClickListener{
-            val intent = Intent(this, WebViewActivity::class.java)
-            intent.putExtra("URL", insecticideBTNLink)
-            intent.putExtra("TITLE", "Insecticides")
-            startActivity(intent)
-        }
     }
 }
