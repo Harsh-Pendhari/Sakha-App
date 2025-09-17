@@ -27,11 +27,9 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        // Firebase init
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Views
         val forgotPassword = findViewById<Button>(R.id.forgotPassword)
         val errorMsg = findViewById<TextView>(R.id.error_msg)
         val registerBtn = findViewById<Button>(R.id.new_registration)
@@ -42,13 +40,11 @@ class LoginActivity : AppCompatActivity() {
         errorMsg.isVisible = false
         forgotPassword.isVisible = false
 
-        // Navigate to Register
         registerBtn.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()
         }
 
-        // Handle Login
         loginBtn.setOnClickListener {
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -61,7 +57,12 @@ class LoginActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        val uid = auth.currentUser?.uid ?: return@addOnCompleteListener
+                        val uid = auth.currentUser?.uid
+                        if (uid == null) {
+                            showError(errorMsg, "User not found")
+                            return@addOnCompleteListener
+                        }
+
                         firestore.collection("users").document(uid)
                             .get()
                             .addOnSuccessListener { doc ->
@@ -72,6 +73,9 @@ class LoginActivity : AppCompatActivity() {
                                 }
                                 finish()
                             }
+                            .addOnFailureListener {
+                                showError(errorMsg, "Error checking user details")
+                            }
                     } else {
                         showError(errorMsg, "Login failed: ${task.exception?.message}")
                         forgotPassword.isVisible = true
@@ -79,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
                 }
         }
 
-        // Handle Forgot Password
         forgotPassword.setOnClickListener {
             val email = emailInput.text.toString().trim()
             if (email.isEmpty()) {

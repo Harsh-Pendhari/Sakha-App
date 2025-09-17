@@ -35,17 +35,17 @@ class HomepageActivity : AppCompatActivity() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navigationView = findViewById<NavigationView>(R.id.navigationView)
         val hamMenu: ImageButton = findViewById(R.id.hamMenu)
+        val myCropsBtn: ImageButton = findViewById(R.id.myCrops)
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Handle menu opening
         hamMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        // Populate nav header
         val headerView = navigationView.getHeaderView(0)
-        val profilePic = headerView.findViewById<ImageView>(R.id.profilePic)
         val userName = headerView.findViewById<TextView>(R.id.userName)
         val userEmail = headerView.findViewById<TextView>(R.id.userEmail)
         val userDistrict = headerView.findViewById<TextView>(R.id.userDistrict)
@@ -54,7 +54,6 @@ class HomepageActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             userEmail.text = currentUser.email ?: "No Email"
-
             firestore.collection("users").document(currentUser.uid)
                 .get()
                 .addOnSuccessListener { doc ->
@@ -69,6 +68,28 @@ class HomepageActivity : AppCompatActivity() {
                 }
         }
 
+        // MyCrops btn logic
+        myCropsBtn.setOnClickListener {
+            val uid = auth.currentUser?.uid
+            if (uid == null) {
+                Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            firestore.collection("users").document(uid).collection("crops")
+                .get()
+                .addOnSuccessListener { snapshot ->
+                    if (snapshot.isEmpty) {
+                        startActivity(Intent(this, AddCropActivity::class.java))
+                    } else {
+                        startActivity(Intent(this, MycropsActivity::class.java))
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error loading crops", Toast.LENGTH_SHORT).show()
+                }
+        }
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.profit_tracker -> startActivity(Intent(this, ExpenseTrackerActivity::class.java))
@@ -79,6 +100,7 @@ class HomepageActivity : AppCompatActivity() {
                 R.id.feedback -> startActivity(Intent(this, FeedbackActivity::class.java))
                 R.id.nav_logout -> {
                     auth.signOut()
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }
             }
