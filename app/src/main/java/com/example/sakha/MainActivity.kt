@@ -32,35 +32,22 @@ class MainActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
 
         if (currentUser == null) {
+            // Not logged in → go to Login
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         } else {
             val uid = currentUser.uid
-
             firestore.collection("users").document(uid)
                 .get()
                 .addOnSuccessListener { doc ->
                     if (doc.exists()) {
-                        firestore.collection("users").document(uid)
-                            .collection("crops")
-                            .get()
-                            .addOnSuccessListener { snapshot ->
-                                if (snapshot.isEmpty) {
-                                    startActivity(Intent(this, AddCropDetailsActivity::class.java))
-                                } else {
-                                    startActivity(Intent(this, HomepageActivity::class.java))
-                                }
-                                finish()
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(this, "Error checking crops", Toast.LENGTH_SHORT).show()
-                                startActivity(Intent(this, HomepageActivity::class.java))
-                                finish()
-                            }
+                        // User details filled → go to dashboard
+                        startActivity(Intent(this, HomepageActivity::class.java))
                     } else {
+                        // User details missing → go to details form
                         startActivity(Intent(this, UserdetailsformActivity::class.java))
-                        finish()
                     }
+                    finish()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Error loading user details", Toast.LENGTH_SHORT).show()
