@@ -1,4 +1,4 @@
-package com.example.sakha  // change to your package name if different
+package com.example.sakha
 
 import android.view.LayoutInflater
 import android.view.View

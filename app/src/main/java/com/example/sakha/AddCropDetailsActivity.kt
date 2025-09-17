@@ -28,7 +28,6 @@ class AddCropDetailsActivity : AppCompatActivity() {
             insets
         }
 
-        // Firebase
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
@@ -38,7 +37,6 @@ class AddCropDetailsActivity : AppCompatActivity() {
         val cropStatusDropdown = findViewById<Spinner>(R.id.cropStatusDropdown)
         val addCropBtn = findViewById<Button>(R.id.AddCropDetailsBTN)
 
-        // Date picker
         dateInput.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
@@ -55,7 +53,6 @@ class AddCropDetailsActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        // Crop type spinner
         val cropTypes = listOf(
             "Select Crop Type","Grain/ Cereal","Pulses/ Legumes","Fruits","Vegetables",
             "Flowers","Spices/ Condiments","Medicinal/ Aromatics","Fiber Crops","Oil seeds","Sugar Crops"

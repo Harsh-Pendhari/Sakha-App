@@ -32,27 +32,22 @@ class MainActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
 
         if (currentUser == null) {
-            // 🚀 No user logged in → go to LoginActivity
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         } else {
             val uid = currentUser.uid
 
-            // ✅ Check if user details exist
             firestore.collection("users").document(uid)
                 .get()
                 .addOnSuccessListener { doc ->
                     if (doc.exists()) {
-                        // User details exist → now check crops
                         firestore.collection("users").document(uid)
                             .collection("crops")
                             .get()
                             .addOnSuccessListener { snapshot ->
                                 if (snapshot.isEmpty) {
-                                    // 🚜 No crops → go to AddCropDetailsActivity
                                     startActivity(Intent(this, AddCropDetailsActivity::class.java))
                                 } else {
-                                    // 🌾 Crops exist → go to Homepage (Dashboard)
                                     startActivity(Intent(this, HomepageActivity::class.java))
                                 }
                                 finish()
@@ -63,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                                 finish()
                             }
                     } else {
-                        // 📝 User details not filled → go to UserDetailsActivity
                         startActivity(Intent(this, UserdetailsformActivity::class.java))
                         finish()
                     }

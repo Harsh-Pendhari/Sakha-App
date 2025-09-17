@@ -45,6 +45,14 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/userState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
                 android:id="@+id/userDistrict"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,13 +60,6 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/userState"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="State"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

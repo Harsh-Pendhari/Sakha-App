@@ -44,7 +44,6 @@ class HomepageActivity : AppCompatActivity() {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        // -------- Get Nav Header Views --------
         val headerView = navigationView.getHeaderView(0)
         val profilePic = headerView.findViewById<ImageView>(R.id.profilePic)
         val userName = headerView.findViewById<TextView>(R.id.userName)
@@ -52,7 +51,6 @@ class HomepageActivity : AppCompatActivity() {
         val userDistrict = headerView.findViewById<TextView>(R.id.userDistrict)
         val userState = headerView.findViewById<TextView>(R.id.userState)
 
-        // -------- Load User Info --------
         val currentUser = auth.currentUser
         if (currentUser != null) {
             userEmail.text = currentUser.email ?: "No Email"
@@ -71,7 +69,6 @@ class HomepageActivity : AppCompatActivity() {
                 }
         }
 
-        // -------- Handle Menu Items --------
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.profit_tracker -> startActivity(Intent(this, ExpenseTrackerActivity::class.java))
