@@ -9,23 +9,27 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        setContentView(R.layout.activity_login)
+
         ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        setContentView(R.layout.activity_login)
 
         // Firebase init
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Views
         val forgotPassword = findViewById<Button>(R.id.forgotPassword)
@@ -36,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.login_btn)
 
         errorMsg.isVisible = false
-        forgotPassword.isVisible = false // we’ll enable this later if you want reset password
+        forgotPassword.isVisible = false
 
         // Navigate to Register
         registerBtn.setOnClickListener {
@@ -57,14 +61,20 @@ class LoginActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-
-                        // 👉 Navigate to home/dashboard activity after login
-                        startActivity(Intent(this, UserdetailsformActivity::class.java))
-                        finish()
+                        val uid = auth.currentUser?.uid ?: return@addOnCompleteListener
+                        firestore.collection("users").document(uid)
+                            .get()
+                            .addOnSuccessListener { doc ->
+                                if (doc.exists()) {
+                                    startActivity(Intent(this, HomepageActivity::class.java))
+                                } else {
+                                    startActivity(Intent(this, UserdetailsformActivity::class.java))
+                                }
+                                finish()
+                            }
                     } else {
                         showError(errorMsg, "Login failed: ${task.exception?.message}")
-                        forgotPassword.isVisible = true // show reset option if login fails
+                        forgotPassword.isVisible = true
                     }
                 }
         }
