@@ -1,6 +1,7 @@
 package com.example.sakha
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -39,6 +40,42 @@ class HomepageActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+
+        // BTN WORK
+        val irrigationMethodsBTN = findViewById<ImageButton>(R.id.irrigationMethods_btn)
+        irrigationMethodsBTN.setOnClickListener {
+            startActivity(Intent(this, IrrigationMethodsActivity::class.java))
+        }
+
+        val marketBTN = findViewById<ImageButton>(R.id.market_btn)
+        marketBTN.setOnClickListener {
+            startActivity(Intent(this, MarketActivity::class.java))
+        }
+
+        val pestBTN = findViewById<ImageButton>(R.id.pest_btn)
+        pestBTN.setOnClickListener {
+            startActivity(Intent(this, PesticidesActivity::class.java))
+        }
+
+        val weatherBTN = findViewById<ImageButton>(R.id.weatherBTN)
+        weatherBTN.setOnClickListener {
+            startActivity(Intent(this, WeatherActivity::class.java))
+        }
+
+        val mktPriceBTN = findViewById<ImageButton>(R.id.mktPrice_btn)
+        mktPriceBTN.setOnClickListener {
+            startActivity(Intent(this, MarketPriceActivity::class.java))
+        }
+
+        val tipsBTN = findViewById<ImageButton>(R.id.tips_btn)
+        tipsBTN.setOnClickListener {
+            startActivity(Intent(this, FarmingtipsActivity::class.java))
+        }
+
+        val governmentSchemesBTN = findViewById<ImageButton>(R.id.government_schemesBTN)
+        governmentSchemesBTN.setOnClickListener {
+            startActivity(Intent(this, GovSchemesActivity::class.java))
+        }
 
         hamMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
