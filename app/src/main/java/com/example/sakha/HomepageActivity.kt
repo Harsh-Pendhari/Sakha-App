@@ -81,6 +81,28 @@ class HomepageActivity : AppCompatActivity() {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        // WELCOME FARMER LOGIC:
+        val welcomeText = findViewById<TextView>(R.id.welcomeText)
+
+        val currentuser = auth.currentUser
+        if (currentuser != null) {
+            firestore.collection("users").document(currentuser.uid)
+                .get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        val farmerName = doc.getString("name") ?: "Farmer"
+                        welcomeText.text = "Welcome $farmerName"
+                    } else {
+                        welcomeText.text = "Welcome Farmer"
+                    }
+                }
+                .addOnFailureListener {
+                    welcomeText.text = "Welcome Farmer"
+                }
+        } else {
+            welcomeText.text = "Welcome Farmer"
+        }
+
         // Populate nav header
         val headerView = navigationView.getHeaderView(0)
         val userName = headerView.findViewById<TextView>(R.id.userName)

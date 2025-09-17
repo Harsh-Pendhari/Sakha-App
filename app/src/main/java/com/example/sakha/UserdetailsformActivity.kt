@@ -281,7 +281,7 @@ class UserdetailsformActivity : AppCompatActivity() {
                 .set(userDetails)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Details saved successfully!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    startActivity(Intent(this, HomepageActivity::class.java))
                     finish()
                 }
                 .addOnFailureListener { e ->
