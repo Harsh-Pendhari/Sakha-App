@@ -38,7 +38,8 @@
         <activity android:name=".PesticidesActivity" android:exported="false"/>
         <activity android:name=".ExpenseTrackerActivity" android:exported="false"/>
         <activity android:name=".MarketPriceActivity" android:exported="false"/>
-
+        <activity android:name=".MktPriceTabActivity" android:exported="false"/>
+        <activity android:name=".FeedbackActivity" android:exported="false"/>
     </application>
 
 </manifest>

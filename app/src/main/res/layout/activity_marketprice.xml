@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="20dp"
-        android:background="@color/newgreen"
+        android:background="@color/FarmtipsBg"
 
         android:layout_marginBottom="16dp">
 
@@ -38,22 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Market Price"
                 android:textSize="22sp"
-                android:textColor="@color/darkGreen_text"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/tvMarketPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="₹1,200"
-                android:textSize="18sp"
                 android:textColor="@color/darkGreen_text"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -66,7 +57,7 @@
         android:orientation="horizontal"
         android:padding="20dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/newgreen">
+        android:background="@color/FarmtipsBg">
 
         <ImageView
             android:layout_width="60dp"
@@ -79,31 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calculate"
-            android:layout_marginTop="16dp"
-            android:textSize="22sp"
-            android:textColor="@color/darkGreen_text"
-            android:textStyle="bold"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/cardPricingInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        android:background="@color/newgreen">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:contentDescription="pricing information"
-            android:src="@drawable/pricing_info_icon"
-            android:layout_marginEnd="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pricing Info"
             android:layout_marginTop="16dp"
             android:textSize="22sp"
             android:textColor="@color/darkGreen_text"

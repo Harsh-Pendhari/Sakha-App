@@ -66,5 +66,7 @@
     <string name="productionCost">Enter Total Production Cost (₹)</string>
     <string name="sellingRev">Enter Total Selling Revenue (₹)</string>
     <string name="pl">Calculate Profit / Loss</string>
+    <string name="feedback">Feedback</string>
+
 
 </resources>

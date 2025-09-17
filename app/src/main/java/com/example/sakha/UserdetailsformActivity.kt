@@ -5,22 +5,20 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import org.json.JSONObject
 
 class UserdetailsformActivity : AppCompatActivity() {
     private lateinit var stateDistricts: JSONObject
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +29,10 @@ class UserdetailsformActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Firebase
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Load JSON from assets
         val jsonString = assets.open("state_districts.json").bufferedReader().use { it.readText() }
@@ -48,9 +50,6 @@ class UserdetailsformActivity : AppCompatActivity() {
         val txtFieldVillage = findViewById<TextInputLayout>(R.id.village_dropdown_layout)
         val dropdownVillage = findViewById<AutoCompleteTextView>(R.id.villageDropdown)
 
-//        val txtFieldIrrigation = findViewById<TextInputLayout>(R.id.irrigation_dropdown_layout)
-//        val irrigationDropdown = findViewById<AutoCompleteTextView>(R.id.irrigationDropdown)
-
         txtFieldState.isHintEnabled = true
         dropdownState.hint = ""
 
@@ -59,9 +58,6 @@ class UserdetailsformActivity : AppCompatActivity() {
 
         txtFieldVillage.isHintEnabled = true
         dropdownVillage.hint = ""
-//
-//        txtFieldIrrigation.isHintEnabled = true
-//        irrigationDropdown.hint = ""
 
         // State dropdown
         val stateAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, stateList)
@@ -101,7 +97,6 @@ class UserdetailsformActivity : AppCompatActivity() {
             val villageAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, villageList)
             dropdownVillage.setAdapter(villageAdapter)
             dropdownVillage.setDropDownBackgroundResource(R.color.dropdown_bg)
-
             dropdownVillage.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
             dropdownVillage.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
             dropdownVillage.threshold = 1
@@ -116,33 +111,6 @@ class UserdetailsformActivity : AppCompatActivity() {
         unitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         unitSpinner.adapter = unitAdapter
         unitSpinner.setSelection(0)
-
-
-//        // Irrigation dropdown
-//        val irrigationMethods = listOf(
-//            "Surface Irrigation", "Drip Irrigation", "Sprinkler Irrigation",
-//            "Center Pivot Irrigation", "Lateral Move Irrigation",
-//            "Sub-Irrigation", "Manual Irrigation"
-//        )
-//
-//        val irrigationAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, irrigationMethods)
-//        irrigationDropdown.setAdapter(irrigationAdapter)
-//        irrigationDropdown.setDropDownBackgroundResource(R.color.dropdown_bg)
-//        irrigationDropdown.dropDownHeight = WindowManager.LayoutParams.WRAP_CONTENT
-//        irrigationDropdown.dropDownWidth = WindowManager.LayoutParams.MATCH_PARENT
-//        irrigationDropdown.threshold = 0 // allow showing list even without typing
-//
-//        // Show dropdown immediately when clicked (first click)
-//        irrigationDropdown.setOnClickListener {
-//            irrigationDropdown.showDropDown()
-//        }
-//
-//        // Hide when focus is lost
-//        irrigationDropdown.setOnFocusChangeListener { _, hasFocus ->
-//            if (!hasFocus) irrigationDropdown.dismissDropDown()
-//            else irrigationDropdown.showDropDown() // show immediately on first focus
-//        }
-
 
         val irrigationMethodDropdown = findViewById<Spinner>(R.id.irrigationDropdown)
 
@@ -193,6 +161,7 @@ class UserdetailsformActivity : AppCompatActivity() {
         irrigationMethodDropdown.setSelection(0, false)
 
 
+        // Soil type spinner
         val soilTypes = listOf("Select Soil Type","Red","Black","Sandy","Loamy")
         val soilTypeDropdown = findViewById<Spinner>(R.id.soilTypeDropdown)
 
@@ -230,7 +199,7 @@ class UserdetailsformActivity : AppCompatActivity() {
         soilTypeDropdown.adapter = soilTypeAdapter
         soilTypeDropdown.setSelection(0, false)
 
-
+        // Water source spinner
         val waterSources = listOf("Select Water Source","Canal Irrigation","River/ Stream","Well","Tube Well/ Bore-well","Tank/ Pond",
             "Rainwater Harvesting","Lake","Dam/ Reservoir","Groundwater","Check Dam/ Farm Pond")
 
@@ -270,13 +239,75 @@ class UserdetailsformActivity : AppCompatActivity() {
         waterSourcesDropdown.adapter = waterSourcesAdapter
         waterSourcesDropdown.setSelection(0, false)
 
-        // SUBMIT BUTTON
-        val submit_btn = findViewById<Button>(R.id.submit)
+        // Submit button
+        val submitBtn = findViewById<Button>(R.id.submit)
+        val fertilizersGroup = findViewById<RadioGroup>(R.id.fertilizersGroup)
 
-        submit_btn.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+        submitBtn.setOnClickListener {
+            val uid = auth.currentUser?.uid
+            if (uid == null) {
+                Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val state = dropdownState.text.toString().trim()
+            val district = dropdownDistrict.text.toString().trim()
+            val village = dropdownVillage.text.toString().trim()
+            val landArea = landAreaInput.text.toString().trim()
+            val unit = unitSpinner.selectedItem.toString()
+            val irrigation = irrigationMethodDropdown.selectedItem.toString()
+            val soilType = soilTypeDropdown.selectedItem.toString()
+            val waterSource = waterSourcesDropdown.selectedItem.toString()
+
+            val selectedFertilizerId = fertilizersGroup.checkedRadioButtonId
+            val fertilizers = if (selectedFertilizerId != -1) {
+                findViewById<RadioButton>(selectedFertilizerId).text.toString()
+            } else {
+                ""
+            }
+
+            val userDetails = hashMapOf(
+                "state" to state,
+                "district" to district,
+                "village" to village,
+                "landArea" to "$landArea $unit",
+                "irrigationMethod" to irrigation,
+                "soilType" to soilType,
+                "waterSource" to waterSource,
+                "fertilizers" to fertilizers
+            )
+
+            firestore.collection("users").document(uid)
+                .set(userDetails)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Details saved successfully!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
         }
+    }
 
+    // Helper function for dropdowns
+    private fun getCustomAdapter(items: List<String>): ArrayAdapter<String> {
+        return object : ArrayAdapter<String>(this, R.layout.custom_spinner_item, items) {
+            override fun isEnabled(position: Int): Boolean = position != 0
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent) as TextView
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
+                return view
+            }
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
+                return view
+            }
+        }
     }
 }

@@ -4,20 +4,20 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.textfield.TextInputLayout
-import java.util.Calendar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 class AddCropDetailsActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,8 +28,17 @@ class AddCropDetailsActivity : AppCompatActivity() {
             insets
         }
 
-        val dateInput = findViewById<EditText>(R.id.dateInput)
+        // Firebase
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
+        val cropNameInput = findViewById<EditText>(R.id.cropname)
+        val dateInput = findViewById<EditText>(R.id.dateInput)
+        val cropTypeDropdown = findViewById<Spinner>(R.id.cropTypeDropdown)
+        val cropStatusDropdown = findViewById<Spinner>(R.id.cropStatusDropdown)
+        val addCropBtn = findViewById<Button>(R.id.AddCropDetailsBTN)
+
+        // Date picker
         dateInput.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
@@ -46,10 +55,11 @@ class AddCropDetailsActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        val cropTypes = listOf("Select Crop Type","Grain/ Cereal","Pulses/ Legumes","Fruits","Vegetables","Flowers","Spices/ Condiments","Medicinal/ Aromatics",
-            "Fiber Crops","Oil seeds","Sugar Crops")
-
-        val cropTypeDropdown = findViewById<Spinner>(R.id.cropTypeDropdown)
+        // Crop type spinner
+        val cropTypes = listOf(
+            "Select Crop Type","Grain/ Cereal","Pulses/ Legumes","Fruits","Vegetables",
+            "Flowers","Spices/ Condiments","Medicinal/ Aromatics","Fiber Crops","Oil seeds","Sugar Crops"
+        )
 
         val cropTypeAdapter = object : ArrayAdapter<String>(
             this,
@@ -85,9 +95,10 @@ class AddCropDetailsActivity : AppCompatActivity() {
         cropTypeDropdown.adapter = cropTypeAdapter
         cropTypeDropdown.setSelection(0, false)
 
-
-        val growthStatus = listOf("Select Growth Status","Germination","Growing","Flowering","Fruiting","Mature","Ready to Harvest")
-        val growthStatusDropdown = findViewById<Spinner>(R.id.cropStatusDropdown)
+        // Crop growth status spinner
+        val growthStatus = listOf(
+            "Select Growth Status","Germination","Growing","Flowering","Fruiting","Mature","Ready to Harvest"
+        )
 
         val growthStatusAdapter = object : ArrayAdapter<String>(
             this,
@@ -120,7 +131,47 @@ class AddCropDetailsActivity : AppCompatActivity() {
         }
 
         growthStatusAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
-        growthStatusDropdown.adapter = growthStatusAdapter
-        growthStatusDropdown.setSelection(0, false)
+        cropStatusDropdown.adapter = growthStatusAdapter
+        cropStatusDropdown.setSelection(0, false)
+
+        // Save to Firestore
+        addCropBtn.setOnClickListener {
+            val uid = auth.currentUser?.uid
+            if (uid == null) {
+                Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val cropName = cropNameInput.text.toString().trim()
+            val cropType = cropTypeDropdown.selectedItem.toString()
+            val plantingDate = dateInput.text.toString().trim()
+            val status = cropStatusDropdown.selectedItem.toString()
+
+            // Simple validation
+            if (cropName.isEmpty() || cropType.startsWith("Select") ||
+                plantingDate.isEmpty() || status.startsWith("Select")) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val cropDetails = hashMapOf(
+                "cropName" to cropName,
+                "cropType" to cropType,
+                "plantingDate" to plantingDate,
+                "status" to status,
+                "timestamp" to System.currentTimeMillis()
+            )
+
+            firestore.collection("users").document(uid)
+                .collection("crops")
+                .add(cropDetails)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Crop details added!", Toast.LENGTH_SHORT).show()
+                    finish() // Close activity after saving
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }

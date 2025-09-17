@@ -1,113 +1,92 @@
 package com.example.sakha
 
-import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Spinner
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.textfield.TextInputLayout
-import org.json.JSONObject
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomepageActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_homepage)
+
         ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val homeTxt = findViewById<TextView>(R.id.welcomeText)
-
-        homeTxt.setText("Dashboard")
-
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val navigationView = findViewById<NavigationView>(R.id.navigationView)
-
         val hamMenu: ImageButton = findViewById(R.id.hamMenu)
+
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+
+        // Handle menu opening
         hamMenu.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        val marketBTN = findViewById<ImageButton>(R.id.market_btn)
+        // -------- Get Nav Header Views --------
+        val headerView = navigationView.getHeaderView(0)
+        val profilePic = headerView.findViewById<ImageView>(R.id.profilePic)
+        val userName = headerView.findViewById<TextView>(R.id.userName)
+        val userEmail = headerView.findViewById<TextView>(R.id.userEmail)
+        val userDistrict = headerView.findViewById<TextView>(R.id.userDistrict)
+        val userState = headerView.findViewById<TextView>(R.id.userState)
 
-        marketBTN.setOnClickListener{
-            startActivity(Intent(this, MarketActivity::class.java))
+        // -------- Load User Info --------
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            userEmail.text = currentUser.email ?: "No Email"
+
+            firestore.collection("users").document(currentUser.uid)
+                .get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        userName.text = doc.getString("name") ?: "Farmer"
+                        userDistrict.text = doc.getString("district") ?: "District"
+                        userState.text = doc.getString("state") ?: "State"
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to load user details", Toast.LENGTH_SHORT).show()
+                }
         }
 
-        val myCropsBTN = findViewById<ImageButton>(R.id.myCrops)
-        myCropsBTN.setOnClickListener {
-            startActivity(Intent(this, MycropsActivity::class.java))
-        }
-
-        val govBTN = findViewById<ImageButton>(R.id.government_schemesBTN)
-        govBTN.setOnClickListener {
-            startActivity(Intent(this, GovSchemesActivity::class.java))
-        }
-
-        val ideasTipsBTN = findViewById<ImageButton>(R.id.tips_btn)
-        ideasTipsBTN.setOnClickListener {
-            startActivity(Intent(this, FarmingtipsActivity::class.java))
-        }
-
-        val weatherBTN = findViewById<ImageButton>(R.id.weatherBTN)
-        weatherBTN.setOnClickListener{
-            startActivity(Intent(this, WeatherActivity::class.java))
-        }
-
-        val irrigationMethodsBTN = findViewById<ImageButton>(R.id.irrigationMethods_btn)
-        irrigationMethodsBTN.setOnClickListener{
-            startActivity(Intent(this, IrrigationMethodsActivity::class.java))
-        }
-
-        val pestBTN = findViewById<ImageButton>(R.id.pest_btn)
-        pestBTN.setOnClickListener{
-            startActivity(Intent(this, PesticidesActivity::class.java))
-        }
-
-        val marketPriceBTN = findViewById<ImageButton>(R.id.mktPrice_btn)
-        marketPriceBTN.setOnClickListener {
-            startActivity(Intent(this, MarketPriceActivity::class.java))
-        }
-
+        // -------- Handle Menu Items --------
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.profit_tracker -> {
-                    startActivity(Intent(this, ExpenseTrackerActivity::class.java))
-                }
-
+                R.id.profit_tracker -> startActivity(Intent(this, ExpenseTrackerActivity::class.java))
                 R.id.nav_dashboard -> {
                     startActivity(Intent(this, HomepageActivity::class.java))
                     finish()
                 }
-
-                R.id.nav_settings -> Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
-                
-                R.id.nav_logout -> finish()
+                R.id.feedback -> startActivity(Intent(this, FeedbackActivity::class.java))
+                R.id.nav_logout -> {
+                    auth.signOut()
+                    finish()
+                }
             }
             drawerLayout.closeDrawers()
             true
         }
-
     }
 }

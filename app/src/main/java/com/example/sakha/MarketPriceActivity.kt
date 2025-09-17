@@ -22,5 +22,10 @@ class MarketPriceActivity : AppCompatActivity() {
         calculateBTN.setOnClickListener {
             startActivity(Intent(this, ExpenseTrackerActivity::class.java))
         }
+
+        val mktPriceTab = findViewById<LinearLayout>(R.id.cardMarketPrice)
+        mktPriceTab.setOnClickListener {
+            startActivity(Intent(this, MktPriceTabActivity::class.java))
+        }
     }
 }

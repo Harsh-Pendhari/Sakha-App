@@ -9,8 +9,8 @@
         android:title="Expense &amp; Profit Track"
         android:icon="@drawable/ic_calculator" />
 
-    <item android:id="@+id/nav_settings"
-        android:title="Edit Profile"
+    <item android:id="@+id/feedback"
+        android:title="Feedback"
         android:icon="@drawable/ic_settings"/>
 
     <item android:id="@+id/nav_logout"
