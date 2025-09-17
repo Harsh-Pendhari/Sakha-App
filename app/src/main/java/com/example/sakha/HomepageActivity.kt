@@ -113,8 +113,7 @@ class HomepageActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            firestore.collection("users").document(uid).collection("crops")
-                .get()
+            firestore.collection("users").document(uid).collection("crops").get()
                 .addOnSuccessListener { snapshot ->
                     if (snapshot.isEmpty) {
                         startActivity(Intent(this, AddCropActivity::class.java))
@@ -123,7 +122,7 @@ class HomepageActivity : AppCompatActivity() {
                     }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, "Error loading crops", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AddCropActivity::class.java))
                 }
         }
 
