@@ -1,8 +1,8 @@
 package com.example.sakha
 
 data class Crop(
-    val name: String,
-    val type: String,
-    val planted: String,
+    val cropName: String,
+    val cropType: String,
+    val plantingDate: String,
     val status: String
 )

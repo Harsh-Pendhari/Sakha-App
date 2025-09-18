@@ -1,4 +1,4 @@
-package com.example.sakha
+package com.example.sakha  // change to your package name if different
 
 import android.view.LayoutInflater
 import android.view.View
@@ -24,9 +24,9 @@ class CropAdapter(private val cropList: List<Crop>) :
 
     override fun onBindViewHolder(holder: CropViewHolder, position: Int) {
         val crop = cropList[position]
-        holder.cropName.text = crop.name
-        holder.cropType.text = "Type: ${crop.type}"
-        holder.cropPlanted.text = "Planted: ${crop.planted}"
+        holder.cropName.text = crop.cropName
+        holder.cropType.text = "Type: ${crop.cropType}"
+        holder.cropPlanted.text = "Planted: ${crop.plantingDate}"
         holder.cropStatus.text = "Status: ${crop.status}"
     }
 

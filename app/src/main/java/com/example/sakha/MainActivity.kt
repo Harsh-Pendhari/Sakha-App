@@ -32,28 +32,43 @@ class MainActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
 
         if (currentUser == null) {
-            // Not logged in → go to Login
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
-        } else {
-            val uid = currentUser.uid
-            firestore.collection("users").document(uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    if (doc.exists()) {
-                        // User details filled → go to dashboard
-                        startActivity(Intent(this, HomepageActivity::class.java))
-                    } else {
-                        // User details missing → go to details form
-                        startActivity(Intent(this, UserdetailsformActivity::class.java))
-                    }
-                    finish()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Error loading user details", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
-                }
+            return
         }
+
+        val uid = currentUser.uid
+        firestore.collection("users").document(uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                if (!doc.exists()) {
+                    // No document yet → force user details form
+                    startActivity(Intent(this, UserdetailsformActivity::class.java))
+                    finish()
+                    return@addOnSuccessListener
+                }
+
+                // Prefer an explicit flag: profileCompleted
+                val profileCompleted = doc.getBoolean("profileCompleted") ?: false
+
+                // Alternatively check required fields:
+                val name = doc.getString("name") ?: ""
+                val district = doc.getString("district") ?: ""
+                val state = doc.getString("state") ?: ""
+
+                if (!profileCompleted || name.isBlank() || district.isBlank() || state.isBlank()) {
+                    // incomplete profile → show details form
+                    startActivity(Intent(this, UserdetailsformActivity::class.java))
+                } else {
+                    // profile OK → go to homepage
+                    startActivity(Intent(this, HomepageActivity::class.java))
+                }
+                finish()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Error loading user details", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.sakha
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class AddCropDetailsActivity : AppCompatActivity() {
             insets
         }
 
+        // Firebase
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
@@ -37,6 +39,7 @@ class AddCropDetailsActivity : AppCompatActivity() {
         val cropStatusDropdown = findViewById<Spinner>(R.id.cropStatusDropdown)
         val addCropBtn = findViewById<Button>(R.id.AddCropDetailsBTN)
 
+        // Date picker
         dateInput.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
@@ -53,6 +56,7 @@ class AddCropDetailsActivity : AppCompatActivity() {
             datePicker.show()
         }
 
+        // Crop type spinner
         val cropTypes = listOf(
             "Select Crop Type","Grain/ Cereal","Pulses/ Legumes","Fruits","Vegetables",
             "Flowers","Spices/ Condiments","Medicinal/ Aromatics","Fiber Crops","Oil seeds","Sugar Crops"
@@ -64,7 +68,7 @@ class AddCropDetailsActivity : AppCompatActivity() {
             cropTypes
         ) {
             override fun isEnabled(position: Int): Boolean {
-                return position != 0 // Disable the first item (hint)
+                return position != 0
             }
 
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -103,7 +107,7 @@ class AddCropDetailsActivity : AppCompatActivity() {
             growthStatus
         ) {
             override fun isEnabled(position: Int): Boolean {
-                return position != 0 // Disable the first item (hint)
+                return position != 0
             }
 
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -144,7 +148,6 @@ class AddCropDetailsActivity : AppCompatActivity() {
             val plantingDate = dateInput.text.toString().trim()
             val status = cropStatusDropdown.selectedItem.toString()
 
-            // Simple validation
             if (cropName.isEmpty() || cropType.startsWith("Select") ||
                 plantingDate.isEmpty() || status.startsWith("Select")) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
@@ -164,7 +167,7 @@ class AddCropDetailsActivity : AppCompatActivity() {
                 .add(cropDetails)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Crop details added!", Toast.LENGTH_SHORT).show()
-                    finish() // Close activity after saving
+                    startActivity(Intent(this, AddCropActivity::class.java))
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()

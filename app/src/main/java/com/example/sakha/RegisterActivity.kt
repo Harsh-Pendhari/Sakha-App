@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -26,11 +28,9 @@ class RegisterActivity : AppCompatActivity() {
         }
         setContentView(R.layout.activity_register)
 
-        // Firebase init
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Views
         val nameField = findViewById<EditText>(R.id.userFname)
         val emailField = findViewById<EditText>(R.id.usermail)
         val phoneField = findViewById<EditText>(R.id.usernum)
@@ -42,13 +42,11 @@ class RegisterActivity : AppCompatActivity() {
 
         errorMsg.isVisible = false
 
-        // Login button
         loginBtn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
-        // Register button
         registerBtn.setOnClickListener {
             val fullName = nameField.text.toString().trim()
             val email = emailField.text.toString().trim()
@@ -56,7 +54,6 @@ class RegisterActivity : AppCompatActivity() {
             val password = passwordField.text.toString().trim()
             val confirmPassword = confirmPasswordField.text.toString().trim()
 
-            // Validation
             if (fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 showError(errorMsg, "Please fill all fields")
                 return@setOnClickListener
@@ -67,30 +64,68 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Create user in FirebaseAuth
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val uid = auth.currentUser?.uid
-                        val user = User(fullName, email, phone)
-
-                        if (uid != null) {
-                            db.collection("Users").document(uid).set(user)
-                                .addOnSuccessListener {
-                                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
-                                    // Navigate to login or dashboard
-                                    startActivity(Intent(this, LoginActivity::class.java))
-                                    finish()
-                                }
-                                .addOnFailureListener { e ->
-                                    showError(errorMsg, "Failed to save user data: ${e.message}")
-                                }
-                        }
+            // Check whether the email already has an auth account
+            auth.fetchSignInMethodsForEmail(email)
+                .addOnSuccessListener { result ->
+                    val methods = result.signInMethods ?: listOf()
+                    if (methods.isNotEmpty()) {
+                        // Email already in use in FirebaseAuth
+                        showError(errorMsg, "Email already in use. Please login or reset password.")
+                        // optionally show a quick reset:
+                        // auth.sendPasswordResetEmail(email).addOnSuccessListener{...}
                     } else {
-                        showError(errorMsg, "Registration failed: ${task.exception?.message}")
+                        // safe to create new auth account
+                        createAuthAndUser(fullName, email, phone, password, errorMsg)
                     }
                 }
+                .addOnFailureListener { e ->
+                    showError(errorMsg, "Error checking email: ${e.message}")
+                }
         }
+    }
+
+    private fun createAuthAndUser(fullName: String, email: String, phone: String, password: String, errorMsg: TextView) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val uid = auth.currentUser?.uid
+                    if (uid == null) {
+                        showError(errorMsg, "Registration error: UID is null")
+                        return@addOnCompleteListener
+                    }
+                    // user model includes a profileCompleted flag (false until they fill details)
+                    val user = hashMapOf(
+                        "name" to fullName,
+                        "email" to email,
+                        "phone" to phone,
+                        "profileCompleted" to false // important
+                    )
+                    db.collection("users").document(uid).set(user)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Registration successful. Please complete your profile.", Toast.LENGTH_SHORT).show()
+                            // go to details form
+                            startActivity(Intent(this, UserdetailsformActivity::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            // If write fails (permissions etc), consider deleting created auth user to avoid orphaned auth accounts
+                            showError(errorMsg, "Failed to save user data: ${e.message}")
+                            // Optionally cleanup: delete the created auth user
+                            val createdUser = auth.currentUser
+                            createdUser?.delete()
+                        }
+                } else {
+                    val ex = task.exception
+                    // provide helpful message
+                    if (ex is FirebaseAuthUserCollisionException) {
+                        showError(errorMsg, "Email already in use. Please login or reset password.")
+                    } else if (ex is FirebaseAuthInvalidCredentialsException) {
+                        showError(errorMsg, "Invalid email or password.")
+                    } else {
+                        showError(errorMsg, "Registration failed: ${ex?.message}")
+                    }
+                }
+            }
     }
 
     private fun showError(errorMsg: TextView, message: String) {

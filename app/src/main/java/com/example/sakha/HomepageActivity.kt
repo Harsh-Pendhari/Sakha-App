@@ -1,10 +1,8 @@
 package com.example.sakha
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -16,11 +14,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class HomepageActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private var userDocListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +40,10 @@ class HomepageActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+
+        hamMenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
 
         // BTN WORK
         val irrigationMethodsBTN = findViewById<ImageButton>(R.id.irrigationMethods_btn)
@@ -77,33 +81,7 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(Intent(this, GovSchemesActivity::class.java))
         }
 
-        hamMenu.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
-        }
-
-        // WELCOME FARMER LOGIC:
-        val welcomeText = findViewById<TextView>(R.id.welcomeText)
-
-        val currentuser = auth.currentUser
-        if (currentuser != null) {
-            firestore.collection("users").document(currentuser.uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    if (doc.exists()) {
-                        val farmerName = doc.getString("name") ?: "Farmer"
-                        welcomeText.text = "Welcome $farmerName"
-                    } else {
-                        welcomeText.text = "Welcome Farmer"
-                    }
-                }
-                .addOnFailureListener {
-                    welcomeText.text = "Welcome Farmer"
-                }
-        } else {
-            welcomeText.text = "Welcome Farmer"
-        }
-
-        // Populate nav header
+        // Setup header textViews
         val headerView = navigationView.getHeaderView(0)
         val userName = headerView.findViewById<TextView>(R.id.userName)
         val userEmail = headerView.findViewById<TextView>(R.id.userEmail)
@@ -113,21 +91,28 @@ class HomepageActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             userEmail.text = currentUser.email ?: "No Email"
-            firestore.collection("users").document(currentUser.uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    if (doc.exists()) {
-                        userName.text = doc.getString("name") ?: "Farmer"
-                        userDistrict.text = doc.getString("district") ?: "District"
-                        userState.text = doc.getString("state") ?: "State"
+
+            // Use a real-time listener so header updates immediately when user fills the form
+            userDocListener = firestore.collection("users").document(currentUser.uid)
+                .addSnapshotListener { snapshot, error ->
+                    if (error != null) {
+                        // ignore or show Toast
+                        return@addSnapshotListener
                     }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed to load user details", Toast.LENGTH_SHORT).show()
+                    if (snapshot == null || !snapshot.exists()) {
+                        // Not available yet -> show placeholders
+                        userName.text = "Farmer"
+                        userDistrict.text = "District"
+                        userState.text = "State"
+                        return@addSnapshotListener
+                    }
+
+                    userName.text = snapshot.getString("name") ?: "Farmer"
+                    userDistrict.text = snapshot.getString("district") ?: "District"
+                    userState.text = snapshot.getString("state") ?: "State"
                 }
         }
 
-        // MyCrops btn logic
         myCropsBtn.setOnClickListener {
             val uid = auth.currentUser?.uid
             if (uid == null) {
@@ -135,18 +120,25 @@ class HomepageActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            firestore.collection("users").document(uid).collection("crops").get()
+            // Check Firestore for crops before deciding
+            firestore.collection("users").document(uid).collection("crops")
+                .get()
                 .addOnSuccessListener { snapshot ->
                     if (snapshot.isEmpty) {
+                        // No crops → go to AddCropActivity
                         startActivity(Intent(this, AddCropActivity::class.java))
                     } else {
+                        // Crops exist → go to MycropsActivity
                         startActivity(Intent(this, MycropsActivity::class.java))
                     }
                 }
-                .addOnFailureListener {
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error checking crops: ${e.message}", Toast.LENGTH_SHORT).show()
+                    // fallback: let user add crops if something goes wrong
                     startActivity(Intent(this, AddCropActivity::class.java))
                 }
         }
+
 
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -165,5 +157,10 @@ class HomepageActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
             true
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        userDocListener?.remove()
     }
 }

@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import org.json.JSONObject
 
 class UserdetailsformActivity : AppCompatActivity() {
@@ -34,13 +35,14 @@ class UserdetailsformActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Load JSON from assets
+        // Load JSON from assets (state_districts.json)
         val jsonString = assets.open("state_districts.json").bufferedReader().use { it.readText() }
         stateDistricts = JSONObject(jsonString)
 
-        // Get all states (keys of the JSON)
+        // Get all states (keys of the JSON) and sort
         val stateList = stateDistricts.keys().asSequence().toList().sorted()
 
+        // Views
         val txtFieldState = findViewById<TextInputLayout>(R.id.state_dropdown_layout)
         val dropdownState = findViewById<AutoCompleteTextView>(R.id.stateDropdown)
 
@@ -50,6 +52,7 @@ class UserdetailsformActivity : AppCompatActivity() {
         val txtFieldVillage = findViewById<TextInputLayout>(R.id.village_dropdown_layout)
         val dropdownVillage = findViewById<AutoCompleteTextView>(R.id.villageDropdown)
 
+        // Keep the hints enabled (as in your original)
         txtFieldState.isHintEnabled = true
         dropdownState.hint = ""
 
@@ -59,7 +62,7 @@ class UserdetailsformActivity : AppCompatActivity() {
         txtFieldVillage.isHintEnabled = true
         dropdownVillage.hint = ""
 
-        // State dropdown
+        // State dropdown adapter & settings
         val stateAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, stateList)
         dropdownState.setAdapter(stateAdapter)
         dropdownState.setDropDownBackgroundResource(R.color.dropdown_bg)
@@ -70,13 +73,11 @@ class UserdetailsformActivity : AppCompatActivity() {
         // On state selection → load districts
         dropdownState.setOnItemClickListener { parent, _, position, _ ->
             val selectedState = (parent.getItemAtPosition(position) as String).trim()
-
             if (stateDistricts.has(selectedState)) {
                 val districtsJson = stateDistricts.getJSONArray(selectedState)
                 val districtList = MutableList(districtsJson.length()) { i ->
                     districtsJson.getString(i)
                 }
-
                 val districtAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, districtList)
                 dropdownDistrict.setAdapter(districtAdapter)
                 dropdownDistrict.setDropDownBackgroundResource(R.color.dropdown_bg)
@@ -87,13 +88,12 @@ class UserdetailsformActivity : AppCompatActivity() {
             }
         }
 
-        // Village dropdown
+        // Village dropdown (if present in JSON)
         if (stateDistricts.has("Indian_Villages")) {
             val villagesJson = stateDistricts.getJSONArray("Indian_Villages")
             val villageList = MutableList(villagesJson.length()) { i ->
                 villagesJson.getString(i)
             }
-
             val villageAdapter = ArrayAdapter(this, R.layout.custom_dropdown_item, villageList)
             dropdownVillage.setAdapter(villageAdapter)
             dropdownVillage.setDropDownBackgroundResource(R.color.dropdown_bg)
@@ -102,21 +102,19 @@ class UserdetailsformActivity : AppCompatActivity() {
             dropdownVillage.threshold = 1
         }
 
-        // Unit Spinner
+        // Unit Spinner and land area input
         val unitSpinner = findViewById<Spinner>(R.id.unitSpinner)
         val landAreaInput = findViewById<EditText>(R.id.landAreaInput)
         val units = listOf("Acres", "Guntha")
-
         val unitAdapter = ArrayAdapter(this, R.layout.custom_spinner_item, units)
         unitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         unitSpinner.adapter = unitAdapter
         unitSpinner.setSelection(0)
 
+        // Irrigation methods spinner (with hint at index 0)
         val irrigationMethodDropdown = findViewById<Spinner>(R.id.irrigationDropdown)
-
-// Options with the hint at index 0
         val irrigationMethods = listOf(
-            getString(R.string.irrigation_hint), // "Irrigation Method"
+            getString(R.string.irrigation_hint), // "Irrigation Method" hint
             "Surface Irrigation",
             "Drip Irrigation",
             "Sprinkler Irrigation",
@@ -125,121 +123,86 @@ class UserdetailsformActivity : AppCompatActivity() {
             "Sub-Irrigation",
             "Manual Irrigation"
         )
-
         val irrigationMethodsAdapter = object : ArrayAdapter<String>(
             this,
             R.layout.custom_spinner_item,
             irrigationMethods
         ) {
-            override fun isEnabled(position: Int): Boolean {
-                return position != 0 // Disable the first item (hint)
-            }
-
+            override fun isEnabled(position: Int): Boolean = position != 0
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent) as TextView
-                if (position == 0) {
-                    view.setTextColor(getColor(R.color.text_view_textColorHint))
-                } else {
-                    view.setTextColor(getColor(R.color.text_view_textColor))
-                }
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
-
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent) as TextView
-                if (position == 0) {
-                    view.setTextColor(getColor(R.color.text_view_textColorHint))
-                } else {
-                    view.setTextColor(getColor(R.color.text_view_textColor))
-                }
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
         }
-
         irrigationMethodsAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         irrigationMethodDropdown.adapter = irrigationMethodsAdapter
         irrigationMethodDropdown.setSelection(0, false)
 
-
         // Soil type spinner
-        val soilTypes = listOf("Select Soil Type","Red","Black","Sandy","Loamy")
+        val soilTypes = listOf("Select Soil Type", "Red", "Black", "Sandy", "Loamy")
         val soilTypeDropdown = findViewById<Spinner>(R.id.soilTypeDropdown)
-
-        val soilTypeAdapter = object : ArrayAdapter<String>(
-            this,
-            R.layout.custom_spinner_item,
-            soilTypes
-        ) {
-            override fun isEnabled(position: Int): Boolean {
-                return position != 0 // Disable the first item (hint)
-            }
-
+        val soilTypeAdapter = object : ArrayAdapter<String>(this, R.layout.custom_spinner_item, soilTypes) {
+            override fun isEnabled(position: Int): Boolean = position != 0
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent) as TextView
-                if (position == 0) {
-                    view.setTextColor(getColor(R.color.text_view_textColorHint))
-                } else {
-                    view.setTextColor(getColor(R.color.text_view_textColor))
-                }
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
-
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent) as TextView
-                if (position == 0) {
-                    view.setTextColor(getColor(R.color.text_view_textColorHint))
-                } else {
-                    view.setTextColor(getColor(R.color.text_view_textColor))
-                }
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
         }
-
         soilTypeAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         soilTypeDropdown.adapter = soilTypeAdapter
         soilTypeDropdown.setSelection(0, false)
 
         // Water source spinner
-        val waterSources = listOf("Select Water Source","Canal Irrigation","River/ Stream","Well","Tube Well/ Bore-well","Tank/ Pond",
-            "Rainwater Harvesting","Lake","Dam/ Reservoir","Groundwater","Check Dam/ Farm Pond")
-
+        val waterSources = listOf(
+            "Select Water Source",
+            "Canal Irrigation",
+            "River/ Stream",
+            "Well",
+            "Tube Well/ Bore-well",
+            "Tank/ Pond",
+            "Rainwater Harvesting",
+            "Lake",
+            "Dam/ Reservoir",
+            "Groundwater",
+            "Check Dam/ Farm Pond"
+        )
         val waterSourcesDropdown = findViewById<Spinner>(R.id.waterSourceDropdown)
-
-        val waterSourcesAdapter = object : ArrayAdapter<String>(
-            this,
-            R.layout.custom_spinner_item,
-            waterSources
-        ) {
-            override fun isEnabled(position: Int): Boolean {
-                return position != 0 // Disable the first item (hint)
-            }
-
+        val waterSourcesAdapter = object : ArrayAdapter<String>(this, R.layout.custom_spinner_item, waterSources) {
+            override fun isEnabled(position: Int): Boolean = position != 0
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent) as TextView
-                if (position == 0) {
-                    view.setTextColor(getColor(R.color.text_view_textColorHint))
-                } else {
-                    view.setTextColor(getColor(R.color.text_view_textColor))
-                }
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
-
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent) as TextView
-                if (position == 0) {
-                    view.setTextColor(getColor(R.color.text_view_textColorHint))
-                } else {
-                    view.setTextColor(getColor(R.color.text_view_textColor))
-                }
+                if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
+                else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
         }
-
         waterSourcesAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         waterSourcesDropdown.adapter = waterSourcesAdapter
         waterSourcesDropdown.setSelection(0, false)
 
-        // Submit button
+        // Submit button & fertilizers radio group
         val submitBtn = findViewById<Button>(R.id.submit)
         val fertilizersGroup = findViewById<RadioGroup>(R.id.fertilizersGroup)
 
@@ -266,6 +229,13 @@ class UserdetailsformActivity : AppCompatActivity() {
                 ""
             }
 
+            // Basic validation (optional): ensure at least required fields are provided
+            if (state.isEmpty() || district.isEmpty() || landArea.isEmpty()) {
+                Toast.makeText(this, "Please fill state, district and land area", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Prepare map — use merge on write so we don't overwrite existing auth-saved fields
             val userDetails = hashMapOf(
                 "state" to state,
                 "district" to district,
@@ -274,11 +244,13 @@ class UserdetailsformActivity : AppCompatActivity() {
                 "irrigationMethod" to irrigation,
                 "soilType" to soilType,
                 "waterSource" to waterSource,
-                "fertilizers" to fertilizers
+                "fertilizers" to fertilizers,
+                "profileCompleted" to true // important: mark profile completed
             )
 
+            // Merge so existing fields like name/email/phone are preserved
             firestore.collection("users").document(uid)
-                .set(userDetails)
+                .set(userDetails, SetOptions.merge())
                 .addOnSuccessListener {
                     Toast.makeText(this, "Details saved successfully!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, HomepageActivity::class.java))
@@ -290,18 +262,16 @@ class UserdetailsformActivity : AppCompatActivity() {
         }
     }
 
-    // Helper function for dropdowns
+    // Helper function for dropdown-style adapters (not strictly required for earlier code but kept for reuse)
     private fun getCustomAdapter(items: List<String>): ArrayAdapter<String> {
         return object : ArrayAdapter<String>(this, R.layout.custom_spinner_item, items) {
             override fun isEnabled(position: Int): Boolean = position != 0
-
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent) as TextView
                 if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
                 else view.setTextColor(getColor(R.color.text_view_textColor))
                 return view
             }
-
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent) as TextView
                 if (position == 0) view.setTextColor(getColor(R.color.text_view_textColorHint))
